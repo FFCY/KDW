@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>产品详情</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../css/sm.min.css">
+    <link rel="stylesheet" href="../css/sm-extend.min.css">
+    <!--css初始化-->
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/name-card.css">
+</head>
+<body>
+<!--主体内容-->
+<div class="content">
+    <!--头部-->
+    <header id="top" class="top">
+        <span class="top-title">
+            产品信息
+        </span>
+        <a href="javascript:void(0);" id="onExit" class="top_left">
+            <span class="icon icon-left">
+            </span>
+        </a>
+        <a href="#" class="top_right">
+            删除
+        </a>
+    </header>
+    <form id="form" method="post">
+        <div class="list-block wrap-orderinfo">
+            <ul>
+                <li class="webkBlo newOrderLI">
+                    <div class="item-title pdddLeftRem borBottom">
+                        产品名称
+                    </div>
+                    <div class="webInp borBottom pdddRightRem">
+                        <input type="text" placeholder="点此输入" value="" />
+                    </div>
+                </li>
+                <li class="item-content">
+                    <div class="item-media">
+                        <i class="icon icon-f7">
+                        </i>
+                    </div>
+                    <div class="item-inner clickParent">
+                        <div class="item-title">
+                            额度
+                        </div>
+                        <div class="item-after">
+                            <span class="txt">
+                            </span>
+                            <input type="hidden" value="" />
+                            <span class="icon icon-right">
+                            </span>
+                        </div>
+                    </div>
+                </li>
+                <li class="item-content">
+                    <div class="item-media">
+                        <i class="icon icon-f7">
+                        </i>
+                    </div>
+                    <div class="item-inner clickParent">
+                        <div class="item-title">
+                            还款方式
+                        </div>
+                        <div class="item-after">
+                            <span class="txt">
+                            </span>
+                            <input type="hidden" value="" />
+                            <span class="icon icon-right">
+                            </span>
+                        </div>
+                    </div>
+                </li>
+                <li class="align-top">
+                    <div class="item-content">
+                        <div class="item-media">
+                            <i class="icon icon-f7">
+                            </i>
+                        </div>
+                        <div class="item-inner">
+                            <div class="item-title label">
+                                提交资料列表
+                            </div>
+                            <div class="item-input">
+                                <textarea class='area' placeholder="身份证明、工作证明、个人信用报告、工资卡流水、社保卡及明细" ></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="item-content">
+                    <div class="item-media">
+                        <i class="icon icon-f7">
+                        </i>
+                    </div>
+                    <div class="item-inner clickParent">
+                        <div class="item-title">
+                            提交资料方式
+                        </div>
+                        <div class="item-after">
+                            <span class="txt">
+                            </span>
+                            <input type="hidden" value="" />
+                            <span class="icon icon-right">
+                            </span>
+                        </div>
+                    </div>
+                </li>
+                <li class="item-content">
+                    <div class="item-media">
+                        <i class="icon icon-f7">
+                        </i>
+                    </div>
+                    <div class="item-inner clickParent">
+                        <div class="item-title">
+                            需要上面核查
+                        </div>
+                        <div class="item-after">
+                            <span class="txt">
+                            </span>
+                            <input type="hidden" value="" />
+                            <span class="icon icon-right">
+                            </span>
+                        </div>
+                    </div>
+                </li>
+                <li class="item-content">
+                    <div class="item-media">
+                        <i class="icon icon-f7">
+                        </i>
+                    </div>
+                    <div class="item-inner clickParent">
+                        <div class="item-title">
+                            利率
+                        </div>
+                        <div class="item-after">
+                            <span class="txt">
+                            </span>
+                            <input type="hidden" value="" />
+                            <span class="icon icon-right">
+                            </span>
+                        </div>
+                    </div>
+                </li>
+                <li class="item-content">
+                    <div class="item-media">
+                        <i class="icon icon-f7">
+                        </i>
+                    </div>
+                    <div class="item-inner clickParent">
+                        <div class="item-title">
+                            手续费
+                        </div>
+                        <div class="item-after">
+                            <span class="txt">
+                            </span>
+                            <input type="hidden" value="" />
+                            <span class="icon icon-right">
+                            </span>
+                        </div>
+                    </div>
+                </li>
+                <li class="item-content">
+                    <div class="item-media">
+                        <i class="icon icon-f7">
+                        </i>
+                    </div>
+                    <div class="item-inner clickParent">
+                        <div class="item-title">
+                            是否有其他费用
+                        </div>
+                        <div class="item-after">
+                            <span class="txt">
+                            </span>
+                            <input type="hidden" value="" />
+                            <span class="icon icon-right">
+                            </span>
+                        </div>
+                    </div>
+                </li>
+                <li class="item-content">
+                    <div class="item-media">
+                        <i class="icon icon-f7">
+                        </i>
+                    </div>
+                    <div class="item-inner clickParent">
+                        <div class="item-title">
+                            其他费用金额
+                        </div>
+                        <div class="item-after">
+                            <span class="txt">
+                            </span>
+                            <input type="hidden" value="" />
+                            <span class="icon icon-right">
+                            </span>
+                        </div>
+                    </div>
+                </li>
+                <li class="item-content">
+                    <div class="item-media">
+                        <i class="icon icon-f7">
+                        </i>
+                    </div>
+                    <div class="item-inner clickParent">
+                        <div class="item-title">
+                            返点
+                        </div>
+                        <div class="item-after">
+                            <span class="txt">
+                            </span>
+                            <input type="hidden" value="" />
+                            <span class="icon icon-right">
+                            </span>
+                        </div>
+                    </div>
+                </li>
+                <li class="item-content">
+                    <div class="item-media">
+                        <i class="icon icon-f7">
+                        </i>
+                    </div>
+                    <div class="item-inner clickParent">
+                        <div class="item-title">
+                            征信要求
+                        </div>
+                        <div class="item-after">
+                            <span class="txt">
+                            </span>
+                            <input type="hidden" value="" />
+                            <span class="icon icon-right">
+                            </span>
+                        </div>
+                    </div>
+                </li>
+                <li class="item-content">
+                    <div class="item-media">
+                        <i class="icon icon-f7">
+                        </i>
+                    </div>
+                    <div class="item-inner clickParent">
+                        <div class="item-title">
+                            产品覆盖区域
+                        </div>
+                        <div class="item-after">
+                            <span class="txt">
+                            </span>
+                            <input type="hidden" value="" />
+                            <span class="icon icon-right">
+                            </span>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="tt">
+                </li>
+            </ul>
+        </div>
+
+        <div class="content-block wrap-orderinfo">
+            <p>
+                <a href="#" class="button button-fill button-danger btnok">
+                    保存
+                </a>
+            </p>
+        </div>
+    </form>
+</div>
+
+<script type='text/javascript' src='../js/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/sm-extend.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/layer/layer.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/jquery-1.8.3.min.js' charset='utf-8'></script>
+<script>
+    (function($){
+        var g={
+            init:function(){
+                var _t=this;
+            }
+        }
+        $(function(){
+            g.init();
+        });
+    })($);
+</script>
+</body>
+</html>

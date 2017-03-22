@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../css/sm.min.css">
+    <link rel="stylesheet" href="../css/sm-extend.min.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/name-card.css">
+</head>
+<body>
+
+<div class="page-group zIndex10">
+    <div class="page page-current" >
+
+        <!--主体内容-->
+        <div class="content whiteBody">
+            <!--头部-->
+            <header class="top">
+                <span class="top-title">我的单子</span>
+                <a href="#" class="top_left">
+                    <span class="icon icon-left"></span>
+                </a>
+                <a href="#" class="top_right">
+                </a>
+            </header>
+            <p class="greyMt14"></p>
+            <div class="buttons-tab recomTab">
+                <a href="#tab1" class="tab-link active button" style="border-right: 1px solid #e73828;">我的甩单</a>
+                <a href="#tab2" class="tab-link button">我的接单</a>
+
+            </div>
+            <!-- 订单列表 -->
+            <div class="tabs">
+                <div id="tab1" class="tab active">
+                    <div class="conOneCont allRemBlo borBottom padd12">
+                        <p class="recCode">我的推荐码：<span>14785</span></p>
+                    </div>
+                    <div class="leErweiOut">
+                        <p class="leTitle">我的甩单乐二维码</p>
+                        <div class="hasLeEr">
+                            <img src="../image/remCode.jpg"/>
+                        </div>
+                    </div>
+                </div>
+                <div id="tab2" class="tab ">
+                    <div class="conOneCont borBottom padd12">
+                        <p class="recCode">会员名单：（<span>3</span>）<span class="regTime">注册时间/甩单数</span></p>
+                        <ul class="remPerson">
+                            <li>Yamily <span class="timeDetai">2015-08-21&nbsp;&nbsp;16:23(12)</span></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+            <nav class="bar footer onlyOneNav">
+                <a href="#" class="onlyOneBtn redBtn share_go">推荐给好友甩单</a>
+            </nav>
+
+        </div>
+
+    </div>
+</div>
+<!--分享引导图-->
+<section id="bg-fix2" class="bg-fix2">
+    <!--<img style="width: 150px; float: right; " src="../image/yindao.png">-->
+    <div class="copyBlock">
+        <p class="copyTitle">复制以下内容，发给你的朋友</p>
+        <p class="copyUrl">http://m.kaidanwang.com/tjzc2013html?code=Xruensj</p>
+        <p class="copyCalcle">
+            <a href="#">取消</a>
+        </p>
+    </div>
+</section>
+<script type='text/javascript' src='../js/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/sm-extend.min.js' charset='utf-8'></script>
+<script>
+    !function(){
+        var g={
+            init:function(){
+                var _t=this;
+                _t.shareClickInit();
+                _t.cancelShareInit();
+            },
+            /*分享*/
+            shareClickInit:function(){
+                $(".share_go").click(function(){
+                    $("#bg-fix2").show();
+                });
+            },
+            /*取消分享*/
+            cancelShareInit:function(){
+                $("#bg-fix2").click(function(){
+                    $(this).hide();
+                });
+            }
+
+        };
+        $(function(){
+            g.init();
+        });
+    }();
+</script>
+</body>
+</html>

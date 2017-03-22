@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>甩单</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../css/sm.min.css">
+    <link rel="stylesheet" href="../css/sm-extend.min.css">
+    <!--css初始化-->
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/name-card.css">
+</head>
+<body>
+<!--主体内容-->
+<div class="content">
+    <!--头部-->
+    <header id="top" class="top">
+        <span class="top-title">
+            甩单
+        </span>
+        <a href="javascript:void(0);" id="onExit" class="top_left">
+            <span class="icon icon-left">
+            </span>
+        </a>
+        <a href="#" class="top_right">
+        </a>
+    </header>
+    <form id="form" method="post">
+        <div class="list-block wrap-orderinfo">
+            <ul>
+                <li class="cc">
+                </li>
+                <li class="align-top">
+                    <div class="item-content">
+                        <div class="item-media">
+                            <i class="icon icon-f7">
+                            </i>
+                        </div>
+                        <div class="item-inner">
+                            <div class="item-title label">
+                                单子其他要求
+                            </div>
+                            <div class="item-input">
+                                <textarea class='area' placeholder="如其他公司悲剧单原因，征信查询次数过多等" >
+                                </textarea>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="tt">
+                </li>
+                <li class="item-content openPhone">
+                    <div class="item-media">
+                        <i class="icon icon-f7">
+                        </i>
+                    </div>
+                    <div class="item-inner">
+                        <div class="item-title">
+                            是否匿名（屏蔽我的身份信息）
+                        </div>
+                        <div class="item-after">
+                            <label class="label-switch">
+                                <input type="checkbox" name="anonymousFlagShow" id="anonymousFlagShow">
+                                <div class="checkbox mycheck">
+                                </div>
+                            </label>
+                            <input type="hidden" name="anonymousFlag" id="anonymousFlag" value=""
+                                    />
+                        </div>
+                        <div class="item-after">
+                            <label class="label-switch">
+                                <input type="checkbox" name="anonymousFlagShow" >
+                                <div class="checkbox mycheck">
+                                </div>
+                            </label>
+                            <input type="hidden" value="" />
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <section class="meun-list hide">
+            <!-- 订单地址 -->
+            <section class="hall-menu order-address hide">
+                <div>
+                    <ul id="order-address">
+                    </ul>
+                </div>
+            </section>
+        </section>
+        <div class="content-block wrap-orderinfo">
+            <p>
+                <a href="#" class="button button-fill button-danger btnok">
+                    提交
+                </a>
+            </p>
+        </div>
+    </form>
+</div>
+
+<script type='text/javascript' src='../js/iscroll.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/jquery-1.8.3.min.js' charset='utf-8'></script>
+
+</body>
+</html>

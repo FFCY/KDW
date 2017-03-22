@@ -1,0 +1,94 @@
+  @charset "utf-8";
+  /* webrx CSS Document */
+article{ width:100%; }
+.form-div{background-color:#fff; width:100%; height:189px;}
+.form-div p{ text-align:center; width:100%; height:28px;line-height:28px; margin:0 auto; font-size:12px; color:#a9a9a9;} 
+.form-div .btn{ display:block; height:45px; width:95%; margin:0 auto;}
+.form-div .btn a{ text-align:center;background-color:#e73828; border-radius:3px;width:100%; color:#fff; font-size:16px; display:block; height:100%; line-height:45px;}
+.form-div .contact form ul{ margin:0; padding:0;}
+.contact ul li label{height:45px; line-height:45px; display:block; margin-left:14px;}
+.contact ul{ border-top:1px solid #e2e2e2; width:100%; margin: 0 auto; margin-top:14px;}
+.contact .form-li{ height:46px; border-bottom:1px solid #e2e2e2; font-size:14px;}
+.contact .form-li input{ font-size:14px;}
+.form-div input{ height:100%; width:70%; font-size:13px; outline:none;margin:0 auto;}
+.contact{height: auto;margin:0 auto; font-size:14px;}
+.contact ul li{list-style: none; width:100%; height:46px;}
+.contact ul li label { width: auto; display: inline-block;float: left; }
+.contact  .get-li{ z-index:0; position:relative;}
+.contact .form-li .get{ z-index:100; display:block; width:88px; height:24px; background-color:#e73828; position:absolute; top:12px; right:14px; border-radius:3px; line-height:24px; color:#fff; text-align:center; margin:0;}
+.contact .form-li .getalready{ opacity:0.5;}
+.agree{ font-size:12px;margin-top:14px; text-align:center;}
+.agree .protocol{ color:#6ecef8; font-weight:bold;}
+.form-div .form-li input{ margin-left:14px; width:60%;}
+.form-li .forger-pwd{ float:right; margin-right:14px; height:48px; line-height:48px; color:#4cceff;}
+.Login-immediately a{ margin-top:14px; display:block;}
+.login-div{ background-color:#f2f2f2;}
+.login-div .login-ul{ border-top:1px solid #e2e2e2;}
+.login-ul li{ background-color:#fff;}
+.login-ul .login-li{ margin-top:14px;}
+.login-div .lo-box ul{ border:none;}
+.lo-box input { background:url(../images/ckeckbox2.png);}
+.lo-box li{ position:relative; margin-bottom:15px; } 
+.lo-box label{background:url(../images/checkbox1.png) no-repeat 0 center transparent; display:inline-block; height:22px;padding-left:25px;} 
+.lo-box input{ visibility:hidden; } 
+.lo-box .checkedd
+{background:url(../images/ckeckbox2.png) no-repeat 0 center transparent; }
+.lo-box .login-check{ margin:0;}
+.lo-box .login-check li{ float:left; width:auto;}
+.lo-box .login-check input{ width:auto;}
+.lo-box .login-check .no-account{ font-size:12px; color:#808080;text-align:right; margin-right:14px; height:16px; margin-top:14px; float:right; width:115px;}
+.login-check .no-account a{color:#4cceff}
+.right{ background-color:#e73828;}
+.lo-box .login-check .user-name{ width:70px; float:left; font-size: 12px;color: #808080;}
+/*-------login end--------*/
+/*----------xiugai pwd start-----------*/
+.contact .xiugai-ul .login-li{ margin-top:0;}
+.contact h3{ font-size:14px; color:#323232; text-align:center; height:54px; line-height:54px;}
+.contact h3 a{ color:#e73828;}
+.xiugai-ul .send-again{ font-size:12px; background-color:#e73828; display:inline-block; float:right; height:25px; width:80px; line-height:25px; text-align:center; color:#fff; border-radius:3px; position:absolute; top:11px; right:14px;}
+.xiugai-ul .phone-num{ float:left;}
+.contact .xiugai-ul .recover-li{ position:relative}
+/*-----------xiugai pwd end--------*/
+
+
+/*----ruzhu start----*/
+.ruzhu-p{ text-align:center; padding:60px 0 50px;}
+.ruzhu-p img{ display:inline-block;}
+.ru-explain{ font-size:18px; color:#323232; text-align:center; margin-bottom:8px;}
+/*-----ruzhu end*/
+.form-li .forget-pwd{ display:inline-block; font-size:14px; color:#30c7ff; float:right; height:45px; line-height:45px; padding-right:14px;}
+
+/*----identity-heshi start---*/
+.form-div .contact .heshi-ul{ background-color:#fff;}
+.form-div .contact .up-heshi{ margin-top:14px;}
+.form-div .contact  .up-ming{ height:70px; padding-bottom:14px;}
+.form-div .contact .up-font{ border-bottom:none;}
+.form-div .contact  .up-ming .plus{ height:70px; width:76px; background:url(../images/add-img.png) center center no-repeat; display:block;}
+.heshi-exp a{ font-size:16px; color:#5a85d4;}
+.tijiao-time{ font-size:16px; color:#666666; text-align:center;}
+.pass-block{ margin-left:55px; margin-right:14px;}
+.pass-block .iden-pass{ text-align:left; font-size:16px; padding:40px 0 30px;}
+.pass-block .iden-pass img{ width:23px; height:23px; margin-right:14px; vertical-align:middle;}
+.pass-block .iden-exp{ font-size:14px; color:#323232; margin-bottom:20px;}
+.comp-block{ position:relative;}
+.comp-block .job-name{ font-size:14px; color:#646464; position:absolute; left:0; top:0;}
+.comp-block .comp-name{ margin-left:95px; font-size:14px; color:#323232;}
+
+.form-div .contact .fail-exp{ text-align:left; font-size:16px; color:#323232; padding:30px 0 18px;}
+.form-div .contact .fail-exp span{ margin-left:14px;}
+.form-div .contact .fail-Reason{ text-align:left; margin-left:14px; font-size:14px; color:#323232; position:relative; padding-bottom:20px;}
+.form-div .contact .fail-Reason label{ float:left; position:absolute; left:0; top:0px;}
+.form-div .contact .fail-Reason input{ position:absolute; top:0; left:95px; width:60%;}
+.chan-ul .up-mingpian{ font-size:14px; text-align:left; color:#000; height:45px; line-height:45px;}
+/*.form-div .contact .fail-Reason .fail-area{ float:left; margin-left:85px; padding-left:8px; overflow:hidden; margin-right:14px;}
+.form-div .contact .fail-Reason textarea{padding-top:5px;}*/
+/*----identity-heshi start---*/
+
+/*---------regesiter-xieyi  strat---------*/
+.xieyi-block{ width:100%; height:auto; min-height:300px; background-color:#fff; padding-bottom:30px;}
+.xieyi-block .xie-con{margin:0 11px;}
+.xieyi-block .xie-con .xieyi-p{ font-size:14px; color:#323232;} 
+.xieyi-block .xie-con .paragraph{ font-size:12px; color:#646464; line-height:20px; padding-bottom:14px;}
+.xieyi-block .xie-con .paragraph a{ font-size:12px; color:#646464;}
+.xieyi-block .xie-con .para-p{ font-size:12px; color:#646464; line-height:20px;}
+/*---------regesiter-xieyi  end---------*/

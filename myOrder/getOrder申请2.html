@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>接单申请</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../css/sm.min.css">
+    <link rel="stylesheet" href="../css/sm-extend.min.css">
+    <!--css初始化-->
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/name-card.css">
+</head>
+<body>
+<!--主体内容-->
+<div class="content">
+    <!--头部-->
+    <header id="top" class="top">
+        <span class="top-title">
+            甩单
+        </span>
+        <a href="javascript:void(0);" id="onExit" class="top_left">
+            <span class="icon icon-left">
+            </span>
+        </a>
+        <a href="#" class="top_right">
+        </a>
+    </header>
+    <form id="form" method="post">
+        <div class="list-block wrap-orderinfo">
+            <ul>
+                <li class="item-content">
+                    <div class="item-media">
+                        <i class="icon icon-f7">
+                        </i>
+                    </div>
+                    <div class="item-inner">
+                        <div class="item-title">
+                            <span class="redDIan">垫</span>产品名称产品名称
+                        </div>
+                        <div class="item-after">
+                            <span class="txt">
+                            </span>
+                            <input type="hidden" value="" />
+                            <span class="icon icon-right">
+                            </span>
+                        </div>
+                    </div>
+                </li>
+                <li class="tt">
+                </li>
+                <li class="item-content roaParent">
+                    <div class="item-media">
+                        <i class="icon icon-f7">
+                        </i>
+                    </div>
+                    <div class="item-inner clickParent">
+                        <div class="item-title">
+                            给甩单人预计报价单
+                        </div>
+                        <div class="item-after">
+                            <span class="txt">
+                            </span>
+                            <input type="hidden" value="" />
+                            <span class="icon icon-right">
+                            </span>
+                        </div>
+                    </div>
+                </li>
+                <!--隐藏div start-->
+                <div class="hideBlock greyHide">
+                    <li class="webkBlo newOrderLI">
+                        <div class="item-title pdddLeftRem borBottom">
+                            贷款额度（单位万）
+                        </div>
+                        <div class="webInp borBottom pdddRightRem">
+                            <input type="text" placeholder="点此输入" value="" />
+                        </div>
+                    </li>
+                    <li class="webkBlo newOrderLI">
+                        <div class="item-title pdddLeftRem borBottom">
+                            贷款周期（单位月）
+                        </div>
+                        <div class="webInp borBottom pdddRightRem">
+                            <input type="text" placeholder="点此输入" value="" />
+                        </div>
+                    </li>
+                    <li class="webkBlo newOrderLI">
+                        <div class="item-title pdddLeftRem borBottom">
+                            放款期限（单位天）
+                        </div>
+                        <div class="webInp borBottom pdddRightRem">
+                            <input type="text" placeholder="点此输入" value="" />
+                        </div>
+                    </li>
+                    <li class="item-content">
+                        <div class="item-media">
+                            <i class="icon icon-f7">
+                            </i>
+                        </div>
+                        <div class="item-inner">
+                            <div class="item-title">
+                                还款方式
+                            </div>
+                            <div class="item-after">
+                            <span class="txt">
+                            </span>
+                                <input type="hidden" value="" />
+                            <span class="icon icon-right">
+                            </span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="webkBlo newOrderLI">
+                        <div class="item-title pdddLeftRem borBottom">
+                            可做利率（单位%）
+                        </div>
+                        <div class="webInp borBottom pdddRightRem">
+                            <input type="text" placeholder="点此输入" value="" />
+                        </div>
+                    </li>
+                    <li class="item-content fanDian">
+                        <div class="item-media">
+                            <i class="icon icon-f7">
+                            </i>
+                        </div>
+                        <div class="item-inner">
+                            <div class="item-title">
+                                返点
+                            </div>
+                            <div class="item-after">
+                            <span class="txt">
+                            </span>
+                                <input type="hidden" value="" />
+                            <span class="icon icon-right">
+                            </span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="item-content">
+                        <div class="item-media">
+                            <i class="icon icon-f7">
+                            </i>
+                        </div>
+                        <div class="item-inner">
+                            <div class="item-title">
+                                手续费
+                            </div>
+                            <div class="item-after">
+                            <span class="txt">
+                            </span>
+                                <input type="hidden" value="" />
+                            <span class="icon icon-right">
+                            </span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="webkBlo newOrderLI">
+                        <div class="item-title pdddLeftRem borBottom">
+                            其他费用
+                        </div>
+                        <div class="webInp borBottom pdddRightRem">
+                            <input type="text" placeholder="点此输入" value="" />
+                        </div>
+                    </li>
+                </div>
+                <!--隐藏div、 end-->
+                <li class="item-content roaParent">
+                    <div class="item-media">
+                        <i class="icon icon-f7">
+                        </i>
+                    </div>
+                    <div class="item-inner clickParent">
+                        <div class="item-title">
+                            需要甩单人补充材料
+                        </div>
+                        <div class="item-after">
+                            <span class="txt">
+                            </span>
+                            <input type="hidden" value="" />
+                            <span class="icon icon-right">
+                            </span>
+                        </div>
+                    </div>
+                </li>
+                <!--hide block start-->
+                <div class="hideBlock greyHide">
+                    <li class="item-content openPhone">
+                        <div class="item-media">
+                            <i class="icon icon-f7">
+                            </i>
+                        </div>
+                        <div class="item-inner">
+                            <div class="item-title">
+                                车辆型号
+                            </div>
+                            <div class="item-after rightAnNiu">
+                                <label class="label-switch">
+                                    <input type="checkbox" name="" />
+                                    <div class="checkbox mycheck">
+                                    </div>
+                                </label>
+                                <input type="hidden" name="" id="" value="" />
+                            </div>
+                            <div class="item-after right75rem">
+                                <label class="label-switch">
+                                    <input type="checkbox" name="anonymousFlagShow" >
+                                    <div class="checkbox mycheck">
+                                    </div>
+                                </label>
+                                <input type="hidden" value="" />
+                            </div>
+                        </div>
+                    </li>
+                    <li class="item-content openPhone">
+                        <div class="item-media">
+                            <i class="icon icon-f7">
+                            </i>
+                        </div>
+                        <div class="item-inner">
+                            <div class="item-title">
+                                买入价格
+                            </div>
+                            <div class="item-after rightAnNiu">
+                                <label class="label-switch">
+                                    <input type="checkbox" name="" />
+                                    <div class="checkbox mycheck">
+                                    </div>
+                                </label>
+                                <input type="hidden" name="" value="" />
+                            </div>
+                            <div class="item-after right75rem">
+                                <label class="label-switch">
+                                    <input type="checkbox" name="anonymousFlagShow" >
+                                    <div class="checkbox mycheck">
+                                    </div>
+                                </label>
+                                <input type="hidden" value="" />
+                            </div>
+                        </div>
+                    </li>
+                    <li class="item-content openPhone">
+                        <div class="item-media">
+                            <i class="icon icon-f7">
+                            </i>
+                        </div>
+                        <div class="item-inner">
+                            <div class="item-title">
+                                上牌时间
+                            </div>
+                            <div class="item-after rightAnNiu">
+                                <label class="label-switch">
+                                    <input type="checkbox" name="" />
+                                    <div class="checkbox mycheck">
+                                    </div>
+                                </label>
+                                <input type="hidden" name=""   value="" />
+                            </div>
+                            <div class="item-after right75rem">
+                                <label class="label-switch">
+                                    <input type="checkbox" name="anonymousFlagShow" >
+                                    <div class="checkbox mycheck">
+                                    </div>
+                                </label>
+                                <input type="hidden" value="" />
+                            </div>
+                        </div>
+                    </li>
+                    <li class="item-content openPhone">
+                        <div class="item-media">
+                            <i class="icon icon-f7">
+                            </i>
+                        </div>
+                        <div class="item-inner">
+                            <div class="item-title">
+                                车辆年龄
+                            </div>
+                            <div class="item-after rightAnNiu">
+                                <label class="label-switch">
+                                    <input type="checkbox" name="" />
+                                    <div class="checkbox mycheck">
+                                    </div>
+                                </label>
+                                <input type="hidden" name=""  value="" />
+                            </div>
+                            <div class="item-after right75rem">
+                                <label class="label-switch">
+                                    <input type="checkbox" name="anonymousFlagShow" >
+                                    <div class="checkbox mycheck">
+                                    </div>
+                                </label>
+                                <input type="hidden" value="" />
+                            </div>
+                        </div>
+                    </li>
+                    <li class="item-content openPhone">
+                        <div class="item-media">
+                            <i class="icon icon-f7">
+                            </i>
+                        </div>
+                        <div class="item-inner">
+                            <div class="item-title">
+                                是否愿意押车
+                            </div>
+                            <div class="item-after rightAnNiu">
+                                <label class="label-switch">
+                                    <input type="checkbox" name="" />
+                                    <div class="checkbox mycheck">
+                                    </div>
+                                </label>
+                                <input type="hidden" name="" value="" />
+                            </div>
+                            <div class="item-after right75rem">
+                                <label class="label-switch">
+                                    <input type="checkbox" name="anonymousFlagShow" >
+                                    <div class="checkbox mycheck">
+                                    </div>
+                                </label>
+                                <input type="hidden" value="" />
+                            </div>
+                        </div>
+                    </li>
+
+                </div>
+                <!--hide block end-->
+                <li class="item-content">
+                    <div class="item-media">
+                        <i class="icon icon-f7">
+                        </i>
+                    </div>
+                    <div class="item-inner">
+                        <p>HI,当前单子已经没有缺失信息，甩单很积极哟</p>
+
+                    </div>
+                </li>
+                <li class="align-top">
+                    <div class="item-content">
+                        <div class="item-media">
+                            <i class="icon icon-f7">
+                            </i>
+                        </div>
+                        <div class="item-inner">
+
+                            <div class="item-input">
+                                <textarea class="area" placeholder="请输入其他需要的信息"></textarea>                                </textarea>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="tt">
+                </li>
+            </ul>
+        </div>
+
+        <div class="content-block wrap-orderinfo">
+            <p>
+                <a href="#" class="button button-fill button-danger btnok">
+                    提交
+                </a>
+            </p>
+        </div>
+    </form>
+</div>
+
+<script type='text/javascript' src='../js/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/sm-extend.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/layer/layer.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/jquery-1.8.3.min.js' charset='utf-8'></script>
+<script>
+    (function($){
+        var g={
+            init:function(){
+                var _t=this;
+                /*点击出现下面的隐藏按钮*/
+                _t.clickShow();
+                /*返点 start*/
+                _t.fanDian();
+            },
+            /*点击出现下面的隐藏的*/
+            clickShow:function(){
+                 var _t=this;
+                $(".clickParent").on('click',function(){
+                    $(".hideBlock").slideUp();
+                    $(this).parent().siblings(".item-content").find(".rotateFU90").removeClass("rotateFU90");
+                    $(this).parent().next(".hideBlock").stop(true,false).slideToggle();
+                    $(this).parent().find(".icon-right").toggleClass("rotateFU90");
+
+                });
+            },
+            /*返点*/
+            fanDian:function(){
+                var _t=this;
+                $(".fanDian").on('click',function(){
+                    var fanDIanCOn=layer.open("....");
+                });
+            }
+        }
+        $(function(){
+            g.init();
+        });
+    })($);
+</script>
+</body>
+</html>

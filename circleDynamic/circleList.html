@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../css/sm.min.css">
+    <link rel="stylesheet" href="../css/sm-extend.min.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/name-card.css">
+</head>
+<body>
+<script>
+    /*全局配置*/
+    var  CONFIG={
+        /*当前上下文目录*/
+        //winBaseUrl:'${ctx}',
+        winBaseUrl:".",
+        /*点赞图片的基础目录*/
+       // zanpImgSrc:'..'
+        zanpImgSrc:"."
+    };
+</script>
+    <!--头部-->
+    <div class="content good-list-page">
+        <header id="top" class="top">
+            <a href="javascript:void(0);" class="top_left seeFabu">
+                查看
+            </a>
+            <span class="top-title">活动详情</span>
+            <a href="#" class="top_right fabu">
+               <span>发布</span>
+            </a>
+        </header>
+        <div id="wrapper" >
+            <div id="scroller">
+                <div class="ui-loading-wrap" id="pullDown">
+                    <p class="pullDownLabel"></p>
+                </div>
+                <ul id="thelist" class="">
+
+                </ul>
+                <div class="ui-loading-wrap" id="pullUp">
+                    <p class="pullUpLabel"></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+<script type='text/javascript' src='../js/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/sm-extend.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/base.js' charset='utf-8'></script>
+<script type="text/javascript" src="../js/layer/layer.js"></script>
+<script type='text/javascript' src='../js/iscroll4.2.5.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/iscroll.js' charset='utf-8'></script>
+<script>
+    var args,/*ajax请求参数*/
+            scrollObj_height,/*圈子列表的高度*/
+            lookuanZiListType,/*查看圈子列表的类型：查看全国，查看本市，查看我的发布*/
+            myScroll,/*圈子列表的滚动条*/
+            pullDownEl,/*下拉对象*/
+            pullDownOffset,/*下拉高度*/
+            pullUpEl,/*上拉对象*/
+            pullUpOffset/*上拉高度*/
+            ;
+    args={
+        openId:"",
+        async:2,
+        page:1,
+        pageNum:10
+    };
+    ajaxQuanZiListUrl=CONFIG.winBaseUrl+"./json/circleList.html";
+    scrollObj_height= document.body.clientHeight-$("#top").height()-$("#list-nav").height();
+
+    document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+
+    document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 20); }, false);
+    //上拉刷新
+    function pullDownAction () {
+        args.page="1";
+        AjaxLoad("1");
+    }
+    //下拉加载
+    function pullUpAction () {
+        setTimeout(function () {
+            args.page=args.page+1;
+            AjaxLoad();
+        },400);
+    }
+    //初始状态
+    function loaded() {
+
+        AjaxLoad("1");
+        pullDownEl = document.getElementById('pullDown');
+        pullDownOffset = pullDownEl.offsetHeight;
+        pullUpEl = document.getElementById('pullUp');
+        pullUpOffset = pullUpEl.offsetHeight;
+        var scrollObj=$("#wrapper");
+
+        scrollObj.css({"height":scrollObj_height,"width":"100%"});
+        myScroll = new iScroll('wrapper', {
+            useTransition: true,
+            topOffset: pullDownOffset,
+            onRefresh: function () {
+                if (pullDownEl.className.match('loading')) {
+                    pullDownEl.className = '';
+                    pullDownEl.querySelector('.pullDownLabel').innerHTML = '下拉刷新';
+                } else if (pullUpEl.className.match('loading')) {
+                    pullUpEl.className = '';
+                    pullUpEl.querySelector('.pullUpLabel').innerHTML = '上拉加载';
+                }
+            },
+            onScrollMove: function () {
+                if (this.y > 5 && !pullDownEl.className.match('flip')) {
+                    pullDownEl.className = 'flip';
+                    pullDownEl.querySelector('.pullDownLabel').innerHTML = '释放刷新';
+                    this.minScrollY = 0;
+                } else if (this.y < 5 && pullDownEl.className.match('flip')) {
+                    pullDownEl.className = '';
+                    pullDownEl.querySelector('.pullDownLabel').innerHTML = '释放刷新';
+                    this.minScrollY = -pullDownOffset;
+                } else if (this.y < (this.maxScrollY - 5) && !pullUpEl.className.match('flip')) {
+                    pullUpEl.className = 'flip';
+                    pullUpEl.querySelector('.pullUpLabel').innerHTML = '释放刷新';
+                    this.maxScrollY = this.maxScrollY;
+                } else if (this.y > (this.maxScrollY + 5) && pullUpEl.className.match('flip')) {
+                    pullUpEl.className = '';
+                    pullUpEl.querySelector('.pullUpLabel').innerHTML = '释放刷新';
+                    this.maxScrollY = pullUpOffset;
+                }
+            },
+            onScrollEnd: function () {
+                if (pullDownEl.className.match('flip')) {
+                    pullDownEl.className = 'loading';
+                    pullDownEl.querySelector('.pullDownLabel').innerHTML = '加载中...';
+                    pullDownAction();	// Execute custom function (ajax call?)
+                } else if (pullUpEl.className.match('flip')) {
+                    pullUpEl.className = 'loading';
+                    pullUpEl.querySelector('.pullUpLabel').innerHTML = '加载中...';
+                    pullUpAction();	// Execute custom function (ajax call?)
+                }
+            }
+        });
+
+    }
+    function AjaxLoad(isfirstload){
+
+        var $list="";
+        getAjaxData({
+            url:ajaxQuanZiListUrl,
+            data:args,
+            dataType : "html"
+        }, function(data){
+            appendHmtl(data,isfirstload);
+            console.info(data);
+            console.info(args);
+        });
+    }
+
+    function appendHmtl(data,isfirstload){
+        if ($.trim(data).length > 0) {
+            //  第一页
+            if(isfirstload){
+                $('#thelist').empty().append($(data));
+            }
+            else{
+                $('#thelist').append($(data));
+            }
+            myScroll.refresh();
+        }else {
+            //  第一页
+            if(isfirstload){
+                var $list="";
+                $list += '<li class="uu-list-nothings"><p class="uu-list-nothings-p">暂无记录</p></li>';
+                $('#thelist').empty().append($list);
+                myScroll.refresh();
+            }
+            else{
+                pullUpEl.querySelector('.pullUpLabel').innerHTML = '已经没有了';
+            }
+        }
+    }
+</script>
+<script type="text/javascript">
+    !function($){
+        var g={
+            init:function(){
+                var _t=this;
+                /*查看*/
+                _t.seeClick();
+                /*评论*/
+                _t.pinglunClick();
+                /*删除*/
+                _t.deleteSpan();
+                /*发布*/
+                _t.fabuClick();
+
+            },
+            /*-- 点击查看--*/
+            seeClick:function(){
+                var t=this;
+                var con='<ul class="faSeeUl"><li>查看全国</li><li>查看本市</li><li>查看我的发布</li></ul>';
+                $(".seeFabu").click(function(){
+                    var index = layer.open({
+                        content: con,
+                        success:function(){
+                             $(".faSeeUl").parent().css({"padding":0});
+                             $(".faSeeUl li").on('click',function(){
+                                layer.close(index);
+                             });
+                        }
+                    });
+                });
+            },
+            /*评论*/
+            pinglunClick:function(){
+                var t=this;
+                var con='<p class="lunBlock"><textarea placeholder="ddfffff"  class="lunText"></textarea><span class="sendText">发送</span></p>';
+                  $(".lunA").click(function(){
+                    var pageii = layer.open({
+                        type: 1,
+                        content: con,
+                        shade: 0,
+                        style: 'position:fixed; left:0; bottom:0; width:100%; height:20%; border:none;',
+                        success:function(){
+                            $(".sendText").click(function(){
+                                layer.close(pageii);
+                            });
+                        }
+                    });
+                });
+            },
+            /*-- 删除--*/
+            deleteSpan:function(){
+                var t=this;
+                var con='<ul class="faSeeUl deketeUl"><li>删除</li></ul>';
+                $(".deleatA").click(function(){
+                    var tParent=$(this).parent(".zanP").parent(".activCon");
+                    var index = layer.open({
+                        content: con,
+                        success:function(){
+                            $(".faSeeUl").parent().css({"padding":0});
+                            $(".deketeUl li").on('click',function(){
+                                layer.close(index);
+                                tParent.remove();
+                            });
+                        }
+                    });
+                });
+            },
+            fabuClick:function(){
+                var t=$(this);
+                var con='<div class="wanBlock"><p class="conP">请完善个人资料的常住地区</p><a href="#" class="redNorBtn">马上完善</a></div>';
+                $(".fabu").click(function(){
+                    var index = layer.open({
+                        content: con,
+                        success:function(){
+                            $(".redNorBtn").on('click',function(){
+                                layer.close(index);
+                            });
+                        }
+                    });
+                });
+            }
+
+        };
+        $(function(){
+            g.init();
+
+        });
+    }(Zepto);
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>甩单</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../css/sm.min.css">
+    <link rel="stylesheet" href="../css/sm-extend.min.css">
+    <!--css初始化-->
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/name-card.css">
+</head>
+<body>
+<!--主体内容-->
+<div class="content">
+    <!--头部-->
+    <header id="top" class="top">
+        <span class="top-title">
+            甩单
+        </span>
+        <a href="javascript:void(0);" id="onExit" class="top_left">
+            <span class="icon icon-left">
+            </span>
+        </a>
+        <a href="#" class="top_right">
+        </a>
+    </header>
+    <form id="form" method="post">
+        <div class="list-block wrap-orderinfo">
+            <ul>
+                <li id="orderAddress" class="item-content">
+                    <div class="item-media">
+                        <i class="icon icon-f7">
+                        </i>
+                    </div>
+                    <div class="item-inner">
+                        <div class="item-title">
+                            车牌所在地
+                        </div>
+                        <div class="item-after">
+                            <span class="txt" id="txtcity">
+                            </span>
+                            <input type="hidden" name="province" id="province" value="" />
+                            <input type="hidden" name="city" id="city" value="" />
+                            <span class="icon icon-right">
+                            </span>
+                        </div>
+                    </div>
+                </li>
+                <li class="item-content clickCarType">
+                    <div class="item-media">
+                        <i class="icon icon-f7">
+                        </i>
+                    </div>
+                    <div class="item-inner">
+                        <div class="item-title">
+                            车牌型号
+                        </div>
+                        <div class="item-after">
+                            <span class="txt">
+                            </span>
+                            <input type="hidden" value="" />
+                            <span class="icon icon-right">
+                            </span>
+                        </div>
+                    </div>
+                </li>
+                <li class="webkBlo newOrderLI">
+                    <div class="item-title pdddLeftRem borBottom">
+                        车龄（单位车）
+                    </div>
+                    <div class="webInp borBottom pdddRightRem">
+                        <input type="text" placeholder="点此输入" value="" />
+                    </div>
+                </li>
+                <li class="webkBlo newOrderLI">
+                    <div class="item-title pdddLeftRem borBottom">
+                        行驶公里数（单位公里）
+                    </div>
+                    <div class="webInp borBottom pdddRightRem">
+                        <input type="text" placeholder="点此输入" value="" />
+                    </div>
+                </li>
+                <li class="item-content kehuMarry">
+                    <div class="item-media">
+                        <i class="icon icon-f7">
+                        </i>
+                    </div>
+                    <div class="item-inner">
+                        <div class="item-title">
+                            车辆情况
+                        </div>
+                        <div class="item-after">
+                            <span class="txt">
+                            </span>
+                            <input type="hidden" name="marriage" id="marriage" value="" />
+                            <span class="icon icon-right">
+                            </span>
+                        </div>
+                    </div>
+                </li>
+                <li class="item-content kehuSex">
+                    <div class="item-media">
+                        <i class="icon icon-f7">
+                        </i>
+                    </div>
+                    <div class="item-inner">
+                        <div class="item-title">
+                            愿意押车
+                        </div>
+                        <div class="item-after">
+                            <span class="txt">
+                            </span>
+                            <input type="hidden" name="gender" id="gender" value="" />
+                            <span class="icon icon-right">
+                            </span>
+                        </div>
+                    </div>
+                </li>
+                <li id="totalOverdueNumLi" class="item-content yuQiHide" style="display:none">
+                    <div class="item-media">
+                        <i class="icon icon-f7">
+                        </i>
+                    </div>
+                    <div class="item-inner">
+                        <div class="item-title">
+                            累计逾期次数
+                        </div>
+                        <div class="item-after inputRest">
+                            <input type="text" name="totalOverdueNum" id="totalOverdueNum" placeholder="点此输入"
+                            value="" />
+                        </div>
+                    </div>
+                </li>
+                <li class="item-content">
+                    <div class="item-media">
+                        <i class="icon icon-f7">
+                        </i>
+                    </div>
+                    <div class="item-inner">
+                        <div class="item-title">
+                            市场价（单位万元）
+                        </div>
+                        <div class="item-after inputRest">
+                            <input type="text" placeholder="点此输入" value="" />
+                        </div>
+                    </div>
+                </li>
+                <li class="cc">
+                </li>
+                <!-- <li class="webkBlo newOrderLI remHeight2 hasHideCon">
+                <div class="webInp pdddRightRem pdddLeftRem">
+                完善车辆信息可提高做单效率<span class="greyFont">（选填）</span>
+                <span class="icon icon-right floatRight"></span>
+                </div>
+                </li> -->
+                <li class="cc">
+                </li>
+                <li class="align-top">
+                    <div class="item-content">
+                        <div class="item-media">
+                            <i class="icon icon-f7">
+                            </i>
+                        </div>
+                        <div class="item-inner">
+                            <div class="item-title label">
+                                单子其他要求
+                            </div>
+                            <div class="item-input">
+                                <textarea class='area' placeholder="如其他公司悲剧单原因，征信查询次数过多等" maxlength="150">
+                                </textarea>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="tt">
+                </li>
+                <li class="item-content openPhone">
+                    <div class="item-media">
+                        <i class="icon icon-f7">
+                        </i>
+                    </div>
+                    <div class="item-inner">
+                        <div class="item-title">
+                            是否匿名（屏蔽我的身份信息）
+                        </div>
+                        <div class="item-after">
+                            <label class="label-switch">
+                                <input type="checkbox" name="anonymousFlagShow" >
+                                <div class="checkbox mycheck">
+                                </div>
+                            </label>
+                            <input type="hidden" name="anonymousFlag" id="anonymousFlag" value=""
+                            />
+                        </div>
+                        <div class="item-after">
+                            <label class="label-switch">
+                                <input type="checkbox" name="anonymousFlagShow">
+                                <div class="checkbox mycheck">
+                                </div>
+                            </label>
+                            <input type="hidden" value="" />
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <section class="meun-list hide">
+            <!-- 订单地址 -->
+            <section class="hall-menu order-address hide">
+                <div>
+                    <ul id="order-address">
+                    </ul>
+                </div>
+            </section>
+        </section>
+        <div class="content-block wrap-orderinfo">
+            <p>
+                <a href="#" class="button button-fill button-danger btnok" id="submitForm"
+                onclick="MtaH5.clickStat('txsdpage1')">
+                    提交
+                </a>
+            </p>
+        </div>
+    </form>
+</div>
+
+<script type='text/javascript' src='../js/iscroll.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/jquery-1.8.3.min.js' charset='utf-8'></script>
+<script>
+var flag=0;
+$('#anonymousFlagShow').on('click',function(){
+	if(flag==0){
+		var con='<div class="wanBlock"><p class="conP">选择匿名发布，会隐藏你所有的个人名片联系信息，接单人无法主动联系你！</p><a href="#" class="redNorBtn">我知道了</a></div>';
+	    var index = layer.open({
+	        content: con,
+	        success:function(){
+	            $(".redNorBtn").on('click',function(){
+	            	layer.close(index);
+                	return false;
+	            });
+	        }
+	});
+	    flag=1;
+	}
+})
+function changContent(a){
+	if(a==1){
+		$('#orderDesc').attr('placeholder','年龄/职业/婚姻状况/借款用途/还款来源/征信状况/抵押房地址/评估价/抵押物类型/抵押物状态（出租、自住）/原抵押金额/原有权利人（银行、民间）/是否有备用房');
+	}else if(a==2){
+		$('#orderDesc').attr('placeholder','年龄/职业/婚姻状况/借款用途/还款来源/征信状况/抵押车（品牌、型号、车龄）/购车方式（全款、贷款）/评估价');
+	}else if(a==3){
+		$('#orderDesc').attr('placeholder','年龄/职业/婚姻状况/借款用途/还款来源/征信状况/月收入');
+	}else if(a==4){
+		$('#orderDesc').attr('placeholder','年龄/职业/婚姻状况/借款用途/还款来源/征信状况/月收入/是否提供抵押物/垫资周期');
+	}else if(a==5){
+		$('#orderDesc').attr('placeholder','年龄/职业/婚姻状况/借款用途/还款来源/征信状况/月收入/是否提供抵押物');
+	}
+	
+}
+	$(function (){
+		$("#onExit").click(function (){
+			var index=layer.open({
+			    content: '信息尚未发布，确认离开吗',
+			    btn: ['继续输入', '离开'],
+			    shadeClose: false,
+			    yes: function(){
+			        layer.close(index);
+			    }, no: function(){
+			        location.href="${ctx}/apiOrder/orderList"+"?"+Math.random();
+			    }
+			});
+		});
+		var btnFlag=0;
+		$("#submitForm").click(function (){
+			$('#submitForm').attr('disabled',"disabled");
+			if(isNull($("#type").val())){
+				layer.open({
+				    content: '您还未选择借款类型'});
+				return false;
+			}
+			if(isNull($("#province").val())||isNull($("#city").val())){
+				layer.open({
+					content:'请选择借款地点'
+				});
+				return false;
+			}
+			if(isNull($("#amount").val())||isNaN($("#amount").val())){
+				layer.open({
+					content:'借款金额不能为空或者输入的不是数字，请重新输入'
+				});
+				return false;
+			}
+			var regOne =/^(\d+\.\d{1,1}|\d+)$/;
+			if(!regOne.test($("#amount").val())){
+				layer.open({
+					content:'借款金额最多输入1位小数'
+				});
+				return false;
+			}
+			if($("#amount").val()>9999||$("#amount").val()<0.1){
+				layer.open({
+					content:'借款金额输入的值必须在0.1~9999之间'
+				});
+				return false;
+			}
+			if(isNull($("#period").val())||isNaN($("#period").val())){
+				layer.open({
+					content:'借款期限不能为空或者输入的不是数字,请重新输入'
+				});
+				return false;
+			}
+			if($("#period").val().indexOf(".")>=0){
+				layer.open({
+					content:'借款期限不能输入小数'
+				});
+				return false;
+			}
+				if($("#period").val()>99||$("#period").val()<1){
+				layer.open({
+					content:'借款期限需要在1~99之间，请重输'
+				});
+				return false;
+			}
+			
+			
+			if($("#anonymousFlagShow").is(':checked')){
+				$("#anonymousFlag").val('1');
+			}else{
+				$("#anonymousFlag").val('0');
+			}
+			if($('#identity').val()==''){
+				layer.open({
+					content:'请选择客户身份'
+				});
+				return false;
+			}
+			if($('#age').val()==''){
+				layer.open({
+					content:'请选择客户年龄'
+				});
+				return false;
+			}
+			if($('#gender').val()==''){
+				layer.open({
+					content:'请选择客户性别'
+				});
+				return false;
+			}
+			if($('#marriage').val()==''){
+				layer.open({
+					content:'请选择婚姻状况'
+				});
+				return false;
+			}
+			if($('#asset').val()==''){
+				layer.open({
+					content:'请选择资产状况'
+				});
+				return false;
+			}
+			if($('#socialSecurity').val()==''){
+				layer.open({
+					content:'请选择缴纳本地社保'
+				});
+				return false;
+			}
+			if($('#providentFund').val()==''){
+				layer.open({
+					content:'请选择缴纳本地公积金'
+				});
+				return false;
+			}
+			if($('#providentFund').val()==''){
+				layer.open({
+					content:'请选择缴纳本地公积金'
+				});
+				return false;
+			}
+			if($('#hasOverdue').val()==''){
+				layer.open({
+					content:'请选择有无逾期'
+				});
+				return false;
+			}
+			if($('#hasOverdue').val()==1){
+				if($('#hasOverdueNow').val()==''){
+					layer.open({
+						content:'请选择当前有无逾期'
+					});
+					return false;
+				}
+				if($('#totalOverdueNum').val()==''){
+					layer.open({
+						content:'请填写累计逾期次数'
+					});
+					return false;
+				}
+				var regTotal =/^[1-9]\d*$/;
+				if(!regTotal.test($("#totalOverdueNum").val())){
+					layer.open({
+						content:'累计逾期次数请输入1-99之间整数'
+					});
+					return false;
+				}
+				if($("#totalOverdueNum").val()>99||$("#totalOverdueNum").val()<1){
+					layer.open({
+						content:'累计逾期次数值必须在1~99之间'
+					});
+					return false;
+				}
+				if($('#serialOverdueNum').val()==''){
+					layer.open({
+						content:'请填写连续逾期次数'
+					});
+					return false;
+				}
+				if(!regTotal.test($("#serialOverdueNum").val())){
+					layer.open({
+						content:'连续逾期次数请输入1-99之间整数'
+					});
+					return false;
+				}
+				if($("#serialOverdueNum").val()>99||$("#serialOverdueNum").val()<1){
+					layer.open({
+						content:'连续逾期次数值必须在1~99之间'
+					});
+					return false;
+				}
+			}
+			if($('#cashFlow').val()==''){
+				layer.open({
+					content:'请填写每月流水'
+				});
+				return false;
+			}
+			if($("#cashFlow").val()>9999||$("#cashFlow").val()<0.1){
+				layer.open({
+					content:'每月流水输入的值必须在0.1~9999之间'
+				});
+				return false;
+			}
+			var regCash =/^(\d+\.\d{1,1}|\d+)$/;
+			if(!regCash.test($("#cashFlow").val())){
+				layer.open({
+					content:'每月流水最多输入1位小数'
+				});
+				return false;
+			}
+			if(isNull($("#orderDesc").val())){
+				layer.open({
+					content:'单子详情介绍不能为空！！'
+				});
+				return false;
+			}
+			if($("#orderDesc").val().length>150){
+				layer.open({
+					content:'单子详情介绍的字数不能超过150,请重新输入...'
+				});
+				return false;
+			}
+		if(btnFlag!=0){
+			return false;
+		}
+		btnFlag=1;
+		$("#submitForm").attr('style','background:grey;');
+			window.getAjaxData({data:$("#form").serialize(),
+				url:'${ctx}/apiOrder/addOrder',
+				dataType:'json',
+				async:false
+				},
+				function (data){
+					if(data.ret=='0'){
+						
+						window.location.href="${ctx}/apiOrder/addOrderSuccess?id="+data.id;
+					}else if(data.ret=='040102'){
+						btnFlag=0;
+						var con='<div class="wanBlock"><p class="conP">对不起，您今日甩单数已超过当日上限，无法继续甩单，若确有需要请联系客服<a style="color:blue" href="tel:400-853-9399">400-853-9399</a></p><a href="#" class="redNorBtn">我知道了</a></div>';
+					    var index = layer.open({
+					        content: con,
+					        success:function(){
+					            $(".redNorBtn").on('click',function(){
+					            	layer.close(index);
+				                	return false;
+					            });
+					        }
+					});
+					}else{
+						btnFlag=0;
+						$("#submitForm").attr('style','');
+						layer.open({
+							content:data.msg
+						});
+						setTimeout("refreshPage()",1000);
+					}
+					return false;
+				}					
+				);
+		});
+	})
+	function refreshPage(){
+  		window.location.reload();
+  	 }
+</script>
+
+<script type="text/javascript">
+var addressScroll=null;
+!function($,undefined){
+	var g={
+		init:function(){
+			var _t=this;
+			/*是否加载省份*/
+        	_t.province=!1;
+        	/*省份信息*/
+        	_t.provinceJson="";
+			/*借款类型*/
+			_t.borrowTypeInit();
+			/*全国下拉框:直辖市和省*/
+			_t.orderAddressClick();
+
+		},
+		/*全国下拉框:直辖市和省*/
+        orderAddressClick:function(){
+        	var _t=this;
+        	$("#orderAddress").click(function(){
+        		menu_list= $(".meun-list").show();
+        		$(".order-address").show();
+        		(addressScroll)&&(addressScroll.refresh())
+	        	if(_t.province){
+	        		/*加载当前省下的市*/
+	    			_t.cityAddressClick(_t.provinceJson);
+	        	}
+	        	else{
+	        		setTimeout(function(){
+		            	window.getAjaxData({
+		            		url:"${ctx}/apiOther/provincesAndcitys?type=1"
+		            		},
+		            	function(json){
+		            		var  html=' ';
+		        			for(var i=0,len=json.length;i<len;i++){
+		        				html+=" <li data-index='"+i+"'  data-citysLength='"+json[i].citys.length+"'  data-value='"+json[i].id+"'><span>"+json[i].name+"</span><span class='ic-ok'></span></li>";
+		        			}
+			        		$("#order-address").append(html);	
+		        			var address_height= document.body.clientHeight- $("#footer").height()-$("#top").height();
+		        			$(".order-address").css({"height":address_height,"width":"100%"})
+		        			/*创建一个滚动条*/
+		        			 addressScroll= new IScroll(".order-address" , {
+		        				scrollX: !1,
+	        	                scrollY: !0,
+	        	                click: !0,
+	        	                preventDefault: !0
+		        	            });
+		        			
+		        			/*加载当前省下的市*/
+		        			_t.cityAddressClick(json);
+		        			/*已经加载省份*/
+		        			_t.province=!0;
+		        			_t.provinceJson=json;
+		            	});
+	        		},400);
+	        	}
+        	});
+        },
+      
+        /*省下面的市*/
+        cityAddressClick:function(json){
+        	var _t=this;
+        	$("#order-address").children('li').each(function(){
+				$(this).click(function(){
+					var _caller=$(this);
+					/*省下面有市*/
+					if(_caller.attr("data-citysLength")>0)
+					{
+						var list=json[_caller.attr("data-index")].citys;
+						var con = ' <div id="open-city-list" class="open-list-info" style="width: 100%;">\
+		   								 <ul id="cityList">';
+						for(var i=0,len=list.length;i<len;i++){
+							con+="<li  data-value='"+list[i].id+"'>"+list[i].name+"<span class='ic-ok'></span></li>";
+						}
+						con+=  ' </ul></div>';
+						var index= layer.open({
+							className:"aaa",
+							scrollbar:!0,
+							content:con,
+							style:"width:250px;overflow:hidden;",
+							success:function(){
+								var heig_body=document.body.clientHeight-40;
+								var heig_li=$("#cityList").children("li")[0].offsetHeight;
+								/*市的数据过多时，创建一个滚动 */
+								if(heig_li*len>=heig_body){
+									$("#open-city-list").css("height",heig_body);
+									var cityScroll= new IScroll("#open-city-list" , {
+										scrollX: !1,
+			        	                scrollY: !0,
+			        	                click: !0,
+			        	                preventDefault: !0
+			        	            });
+								}
+							}
+						});
+						
+						/*点击市*/
+						_t.cityClickAfter(index,_caller);
+					}
+					/*点击直辖市*/
+					else{
+						
+					}
+				
+				});
+			});
+        },
+        /*点击市*/
+        cityClickAfter:function(index,_pcaller){
+        	$("#cityList").children('li').each(function(){
+				$(this).click(function(){
+					 var _$caller=$(this) ,
+					 value=_$caller.attr("data-value"),
+					 text=_$caller.text()
+					 ;
+					 
+					_$caller.addClass("active").find(".ic-ok").addClass("icon icon-check");
+					$(".order-address").hide();
+					$(".meun-list").hide();
+					layer.close(index);
+					/*省*/ 
+						$("#province").val(_pcaller.attr("data-value"));
+						/*市*/ 
+						$("#city").val(value);
+						$("#txtcity").text(text);
+						$("#order-address").children("li").removeClass("active").find(".ic-ok").removeClass("icon icon-check");
+						_pcaller.addClass("active").find(".ic-ok").addClass("icon icon-check");
+				}); 
+					
+				});
+        }
+		,
+		/*借款类型*/
+		borrowTypeInit:function(){
+			var _t=this;
+			$("#borrowType").click(function(){
+			  var borrowType=	$("#type").val();
+				var con = ' <div class="open-list-info">\
+								 <ul id="borrowTypelist">\
+							        <li data-value="301">房产抵押<span class="ic-ok"></span></li>\
+							        <li data-value="302">车辆质押<span  class="ic-ok"></span></li>\
+							        <li data-value="303">小额贷款<span  class="ic-ok"></span></li>\
+							        <li data-value="304">过桥垫资<span class="ic-ok"></span></li>\
+							        <li data-value="306">银行抵押贷款<span class="ic-ok"></span></li>\
+							        <li data-value="307">银行信用贷款<span class="ic-ok"></span></li>\
+							        <li data-value="308">信用卡<span class="ic-ok"></span></li>\
+							        <li data-value="309">大额贷款<span class="ic-ok"></span></li>\
+							        <li data-value="305">其他<span class="ic-ok"></span></li>\
+							    </ul>\
+							</div>';
+				var index= layer.open({
+					content:con,
+					style:"width:250px;",
+					success:function(){
+						if(borrowType){
+							$("#borrowTypelist").children('li').each(function(){
+								 var _$caller=$(this)
+		                            ;
+								 if(_$caller.attr("data-value")==borrowType){
+									 _$caller.addClass("active").find(".ic-ok").addClass("icon icon-check");
+								 }
+							});
+						}
+					}
+				});
+				_t.borrowTypeLiClick(index);
+				
+				
+			});	
+		},
+		borrowTypeLiClick:function(index){
+		
+			$("#borrowTypelist").children('li').each(function(){
+                $(this).click(function(){
+                    var _$caller=$(this)
+                            ;
+                        $("#txttype").text(_$caller.text());
+                        $("#type").val(_$caller.attr("data-value"));
+                        $("#borrowTypelist").children('li').removeClass("active").find(".ic-ok").removeClass("icon icon-check");
+                        _$caller.addClass("active").find(".ic-ok").addClass("icon icon-check");
+                        layer.close(index);
+                });
+            });
+		}
+	};
+	
+
+	$(function(){
+		g.init();
+	});
+	
+}(Zepto,undefined);
+
+</script>
+<script type="text/javascript">
+function cIdentity(a){
+	$('#identity').attr('value',a);
+}
+function cAge(a){
+	$('#age').attr('value',a);
+}
+
+function ccGender(a){
+	$('#gender').attr('value',a);
+}
+function cMarriage(a){
+	$('#marriage').attr('value',a);
+}
+function cSocialIns(a){
+	$('#socialSecurity').attr('value',a);
+}
+function cSocialCom(a){
+	$('#providentFund').attr('value',a);
+}
+function cOverDue(a){
+	$('#hasOverdue').attr('value',a);
+	if(a==1){
+		$('#hasOverdueNowLi').attr('style','display:block');
+		$('#totalOverdueNumLi').attr('style','display:block');
+		$('#serialOverdueNumLi').attr('style','display:block');
+	}else{
+		$('#hasOverdueNowLi').attr('style','display:none');
+		$('#totalOverdueNumLi').attr('style','display:none');
+		$('#serialOverdueNumLi').attr('style','display:none');
+		$('#hasOverdueNow').attr('value','');
+		$('#totalOverdueNum').val('')
+		$('#serialOverdueNum').val('');
+		$(".hasYuQiNow .txt").text('');
+	}
+}
+function cCurOverDue(a){
+	$('#hasOverdueNow').attr('value',a);
+}
+var addressScroll=null;
+!function($,undefined){
+	var g={
+		init:function(){
+			var _t=this;
+			/*是否加载省份*/
+        	_t.province=!1;
+        	/*省份信息*/
+        	_t.provinceJson="";
+			/*借款类型*/
+			_t.borrowTypeInit();
+			/*全国下拉框:直辖市和省*/
+			_t.orderAddressClick();
+			/* 客户身份 */
+			_t.kehuIdentity();
+			//客户年龄
+			_t.kehuAgeCheck();
+			/* 客户性别 */
+			_t.kehuSex();
+			/* 婚姻状况 */
+			_t.kehuMarry();
+			/* 资产状况 */
+			/* _t.moneyNow(); */
+			/* 社保 */
+			_t.sheBaoCheck();
+			/* 公积金 */
+			_t.commonMoney();
+			/* 有无逾期 */
+			_t.hasYuQiTime();
+			/* 当前有无逾期 */
+			_t.YuQiTimeNow();
+		},
+		/* 客户身份 */
+		kehuIdentity:function(){
+			var _t=this;
+			$(".kehuIdty").on('click',function(){
+				var con='<div class="open-list-info">\
+					 <ul class="kehuUl">\
+			        <li onclick="cIdentity(1701)">企业主<span class="ic-ok icon"></span></li>\
+			        <li onclick="cIdentity(1702)">上班族<span  class="ic-ok icon"></span></li>\
+			        <li onclick="cIdentity(1703)">自雇<span  class="ic-ok icon"></span></li>\
+			        <li onclick="cIdentity(1704)">学生<span class="ic-ok icon"></span></li>\
+			        <li onclick="cIdentity(1799)">其他<span class="ic-ok icon"></span></li>\
+			    </ul></div>';
+			    var layerIndex=layer.open({
+			    	content:con,
+			    	style:"width:250px;",
+			    	success:function(){
+			    		var $text=$(".kehuIdty .txt").text();
+			    		$(".kehuUl li").each(function(index,element){
+			    			var i=index;
+			    			if($(this).text()==$text){
+			    				$(this).addClass("active").find(".icon").addClass("icon-check");
+			    				
+			    			}
+			    			$(this).on('click',function(){
+			    				$("active").removeClass("active").find(".icon-check").removeClass("icon-check")
+			    				$(".kehuIdty .txt").text($(this).text());
+			    				layer.close(layerIndex);
+			    			});
+			    		});
+			    	}
+			    });
+			});
+		},
+		/* 客户年龄 */
+		kehuAgeCheck:function(){
+			var _t=this;
+			$(".cusAge").on('click',function(){
+				var con='<div class="open-list-info">\
+					 <ul class="ageUl">\
+			        <li onclick="cAge(1801)">18-30<span class="ic-ok icon"></span></li>\
+			        <li onclick="cAge(1802)">31-40<span  class="ic-ok icon"></span></li>\
+			        <li onclick="cAge(1803)">41-50<span  class="ic-ok icon"></span></li>\
+			        <li onclick="cAge(1804)">51-60<span class="ic-ok icon"></span></li>\
+			        <li onclick="cAge(1805)">61-65<span class="ic-ok icon"></span></li>\
+			        <li onclick="cAge(1806)">65+<span class="ic-ok icon"></span></li>\
+			    </ul></div>';
+			    var layerAge=layer.open({
+			    	content:con,
+			    	style:"width:250px;",
+			    	success:function(){
+			    		var $text=$(".cusAge .txt").text();
+			    		$(".ageUl li").each(function(index,element){
+			    			var i=index;
+			    			if($(this).text()==$text){
+			    				$(this).addClass("active").find(".icon").addClass("icon-check");
+			    				
+			    			}
+			    			$(this).on('click',function(){
+			    				$("active").removeClass("active").find(".icon-check").removeClass("icon-check")
+			    				$(".cusAge .txt").text($(this).text());
+			    				layer.close(layerAge);
+			    			});
+			    		});
+			    	}
+			    });
+			});
+		},
+		/* 之前的弹框 现用作押车 */
+		kehuSex:function(){
+			var _t=this;
+			$(".kehuSex").on('click',function(){
+				var con='<div class="open-list-info">\
+					 <ul class="sexUl">\
+			        <li onclick="ccGender(400)">是<span class="ic-ok icon"></span></li>\
+			        <li onclick="ccGender(401)">否<span  class="ic-ok icon"></span></li></ul></div>';
+				var layerAge=layer.open({
+			    	content:con,
+			    	style:"width:250px;",
+			    	success:function(){
+			    		var $text=$(".kehuSex .txt").text();
+			    		$(".sexUl li").each(function(index,element){
+			    			var i=index;
+			    			if($(this).text()==$text){
+			    				$(this).addClass("active").find(".icon").addClass("icon-check");
+			    				
+			    			}
+			    			$(this).on('click',function(){
+			    				$("active").removeClass("active").find(".icon-check").removeClass("icon-check")
+			    				$(".kehuSex .txt").text($(this).text());
+			    				layer.close(layerAge);
+			    			});
+			    		});
+			    	[]}
+			    });
+			});
+		},
+		/* 原来的用作车辆情况 */
+		kehuMarry:function(){
+			var _t=this;
+			$(".kehuMarry").on('click',function(){
+				var con='<div class="open-list-info">\
+					 <ul class="marryUl">\
+			        <li onclick="cMarriage(1901)">清车<span class="ic-ok icon"></span></li>\
+			        <li onclick="cMarriage(1902)">按揭<span  class="ic-ok icon"></span></li>\
+			        <li onclick="cMarriage(1903)">抵押<span  class="ic-ok icon"></span></li>\
+			        </ul></div>';
+				var layerMarry=layer.open({
+			    	content:con,
+			    	style:"width:250px;",
+			    	success:function(){
+			    		var $text=$(".kehuMarry .txt").text();
+			    		$(".marryUl li").each(function(index,element){
+			    			var i=index;
+			    			if($(this).text()==$text){
+			    				$(this).addClass("active").find(".icon").addClass("icon-check");
+			    				
+			    			}
+			    			$(this).on('click',function(){
+			    				$("active").removeClass("active").find(".icon-check").removeClass("icon-check")
+			    				$(".kehuMarry .txt").text($(this).text());
+			    				layer.close(layerMarry);
+			    			});
+			    		});
+			    	}
+			    });
+			});
+		},
+		
+		/* 社保 */
+		sheBaoCheck:function(){
+			var _t=this;
+			$(".sheBao").on('click',function(){
+				var con='<div class="open-list-info">\
+					 <ul class="sheBaoUl">\
+			        <li onclick="cSocialIns(1)">是<span class="ic-ok icon"></span></li>\
+			        <li onclick="cSocialIns(0)">否<span  class="ic-ok icon"></span></li>\
+			        </ul></div>';
+				var layerMarry=layer.open({
+			    	content:con,
+			    	style:"width:250px;",
+			    	success:function(){
+			    		var $text=$(".sheBao .txt").text();
+			    		$(".sheBaoUl li").each(function(index,element){
+			    			var i=index;
+			    			if($(this).text()==$text){
+			    				$(this).addClass("active").find(".icon").addClass("icon-check");
+			    				
+			    			}
+			    			$(this).on('click',function(){
+			    				$("active").removeClass("active").find(".icon-check").removeClass("icon-check")
+			    				$(".sheBao .txt").text($(this).text());
+			    				layer.close(layerMarry);
+			    			});
+			    		});
+			    	}
+			    });
+			});
+		},
+		/* 公积金 */
+		commonMoney:function(){
+			var _t=this;
+			$(".gongJiJin").on('click',function(){
+				var con='<div class="open-list-info">\
+					 <ul class="jiJinUl">\
+			        <li  onclick="cSocialCom(1)">是<span class="ic-ok icon"></span></li>\
+			        <li  onclick="cSocialCom(0)">否<span  class="ic-ok icon"></span></li>\
+			        </ul></div>';
+				var layerMarry=layer.open({
+			    	content:con,
+			    	style:"width:250px;",
+			    	success:function(){
+			    		var $text=$(".gongJiJin .txt").text();
+			    		$(".jiJinUl li").each(function(index,element){
+			    			var i=index;
+			    			if($(this).text()==$text){
+			    				$(this).addClass("active").find(".icon").addClass("icon-check");
+			    				
+			    			}
+			    			$(this).on('click',function(){
+			    				$("active").removeClass("active").find(".icon-check").removeClass("icon-check")
+			    				$(".gongJiJin .txt").text($(this).text());
+			    				layer.close(layerMarry);
+			    			});
+			    		});
+			    	}
+			    });
+			});
+		},
+		/* 有无逾期 */
+		hasYuQiTime:function(){
+			var _t=this;
+			$(".hasYuQi").on('click',function(){
+				var con='<div class="open-list-info">\
+					 <ul class="yuQiUl">\
+			        <li  onclick="cOverDue(1)" class="has">有<span class="ic-ok icon"></span></li>\
+			        <li  onclick="cOverDue(0)" class="no">无<span  class="ic-ok icon"></span></li>\
+			        </ul></div>';
+				var layerYu=layer.open({
+			    	content:con,
+			    	style:"width:250px;",
+			    	success:function(){
+			    		var $text=$(".hasYuQi .txt").text();
+			    		$(".yuQiUl li").each(function(index,element){
+			    			var i=index;
+			    			if($(this).text()==$text){
+			    				$(this).addClass("active").find(".icon").addClass("icon-check");
+			    				if($text=="有"){
+			    					$(".yuQiHide").css({"display":"block"});
+			    				}else{
+			    					$(".yuQiHide").css({"display":"none"});
+			    				}
+			    			}
+			    			$(this).on('click',function(){
+			    				$("active").removeClass("active").find(".icon-check").removeClass("icon-check")
+			    				$(".hasYuQi .txt").text($(this).text());
+			    				if($(this).text()=="有"){
+			    					$(".yuQiHide").css({"display":"block"});
+			    				}else{
+			    					$(".yuQiHide").css({"display":"none"});
+			    				}
+			    				layer.close(layerYu);
+			    			});
+			    			
+			    		});
+			    	}
+			    });
+			});
+		},
+		/* 当前有无逾期 */
+		YuQiTimeNow:function(){
+			var _t=this;
+			$(".hasYuQiNow").on('click',function(){
+				var con='<div class="open-list-info">\
+					 <ul class="yuQiNowUl">\
+			        <li onclick="cCurOverDue(1)">有<span class="ic-ok icon"></span></li>\
+			        <li onclick="cCurOverDue(0)">无<span  class="ic-ok icon"></span></li>\
+			        </ul></div>';
+				var layerYu=layer.open({
+			    	content:con,
+			    	style:"width:250px;",
+			    	success:function(){
+			    		var $text=$(".hasYuQiNow .txt").text();
+			    		$(".yuQiNowUl li").each(function(index,element){
+			    			var i=index;
+			    			if($(this).text()==$text){
+			    				$(this).addClass("active").find(".icon").addClass("icon-check");
+			    				
+			    			}
+			    			$(this).on('click',function(){
+			    				$("active").removeClass("active").find(".icon-check").removeClass("icon-check")
+			    				$(".hasYuQiNow .txt").text($(this).text());
+			    				layer.close(layerYu);
+			    			});
+			    			
+			    		});
+			    	}
+			    });
+			});
+		},
+		/*全国下拉框:直辖市和省 现用为车牌所在地*/
+        orderAddressClick:function(){
+        	var _t=this;
+        	$("#orderAddress").click(function(){
+        		menu_list= $(".meun-list").show();
+        		$(".order-address").show();
+        		(addressScroll)&&(addressScroll.refresh())
+	        	if(_t.province){
+	        		/*加载当前省下的市*/
+	    			_t.cityAddressClick(_t.provinceJson);
+	        	}
+	        	else{
+	        		setTimeout(function(){
+		            	window.getAjaxData({
+		            		url:"${ctx}/apiOther/provincesAndcitys?type=1"
+		            		},
+		            	function(json){
+		            		var  html=' ';
+		        			for(var i=0,len=json.length;i<len;i++){
+		        				html+=" <li data-index='"+i+"'  data-citysLength='"+json[i].citys.length+"'  data-value='"+json[i].id+"'><span>"+json[i].name+"</span><span class='ic-ok'></span></li>";
+		        			}
+			        		$("#order-address").append(html);	
+		        			var address_height= document.body.clientHeight- $("#footer").height()-$("#top").height();
+		        			$(".order-address").css({"height":address_height,"width":"100%"})
+		        			/*创建一个滚动条*/
+		        			 addressScroll= new IScroll(".order-address" , {
+		        				scrollX: !1,
+	        	                scrollY: !0,
+	        	                click: !0,
+	        	                preventDefault: !0
+		        	            });
+		        			
+		        			/*加载当前省下的市*/
+		        			_t.cityAddressClick(json);
+		        			/*已经加载省份*/
+		        			_t.province=!0;
+		        			_t.provinceJson=json;
+		            	});
+	        		},400);
+	        	}
+        	});
+        },
+      
+        /*省下面的市*/
+        cityAddressClick:function(json){
+        	var _t=this;
+        	$("#order-address").children('li').each(function(){
+				$(this).click(function(){
+					var _caller=$(this);
+					/*省下面有市*/
+					if(_caller.attr("data-citysLength")>0)
+					{
+						var list=json[_caller.attr("data-index")].citys;
+						var con = ' <div id="open-city-list" class="open-list-info" style="width: 100%;">\
+		   								 <ul id="cityList">';
+						for(var i=0,len=list.length;i<len;i++){
+							con+="<li  data-value='"+list[i].id+"'>"+list[i].name+"<span class='ic-ok'></span></li>";
+						}
+						con+=  ' </ul></div>';
+						var index= layer.open({
+							className:"aaa",
+							scrollbar:!0,
+							content:con,
+							style:"width:250px;overflow:hidden;",
+							success:function(){
+								var heig_body=document.body.clientHeight-40;
+								var heig_li=$("#cityList").children("li")[0].offsetHeight;
+								/*市的数据过多时，创建一个滚动 */
+								if(heig_li*len>=heig_body){
+									$("#open-city-list").css("height",heig_body);
+									var cityScroll= new IScroll("#open-city-list" , {
+										scrollX: !1,
+			        	                scrollY: !0,
+			        	                click: !0,
+			        	                preventDefault: !0
+			        	            });
+								}
+							}
+						});
+						
+						/*点击市*/
+						_t.cityClickAfter(index,_caller);
+					}
+					/*点击直辖市*/
+					else{
+						
+					}
+				
+				});
+			});
+        },
+        /*点击市*/
+        cityClickAfter:function(index,_pcaller){
+        	$("#cityList").children('li').each(function(){
+				$(this).click(function(){
+					 var _$caller=$(this) ,
+					 value=_$caller.attr("data-value"),
+					 text=_$caller.text()
+					 ;
+					 
+					_$caller.addClass("active").find(".ic-ok").addClass("icon icon-check");
+					$(".order-address").hide();
+					$(".meun-list").hide();
+					layer.close(index);
+					/*省*/ 
+						$("#province").val(_pcaller.attr("data-value"));
+						/*市*/ 
+						$("#city").val(value);
+						$("#txtcity").text(text);
+						$("#order-address").children("li").removeClass("active").find(".ic-ok").removeClass("icon icon-check");
+						_pcaller.addClass("active").find(".ic-ok").addClass("icon icon-check");
+				}); 
+					
+				});
+        }
+		,
+		/*借款类型*/
+		borrowTypeInit:function(){
+			var _t=this;
+			$("#borrowType").click(function(){
+			  var borrowType=	$("#type").val();
+				var con = ' <div class="open-list-info">\
+								 <ul id="borrowTypelist">\
+								 	<li data-value="301">房产抵押<span class="ic-ok"></span></li>\
+							        <li data-value="302">车辆质押<span  class="ic-ok"></span></li>\
+							        <li data-value="303">小额贷款<span  class="ic-ok"></span></li>\
+							        <li data-value="304">过桥垫资<span class="ic-ok"></span></li>\
+							        <li data-value="306">银行抵押贷款<span class="ic-ok"></span></li>\
+							        <li data-value="307">银行信用贷款<span class="ic-ok"></span></li>\
+							        <li data-value="308">信用卡<span class="ic-ok"></span></li>\
+							        <li data-value="309">大额贷款<span class="ic-ok"></span></li>\
+							        <li data-value="305">其他<span class="ic-ok"></span></li>\
+							    </ul>\
+							</div>';
+				var index= layer.open({
+					content:con,
+					style:"width:250px;",
+					success:function(){
+						if(borrowType){
+							$("#borrowTypelist").children('li').each(function(){
+								 var _$caller=$(this)
+		                            ;
+								 if(_$caller.attr("data-value")==borrowType){
+									 _$caller.addClass("active").find(".ic-ok").addClass("icon icon-check");
+								 }
+							});
+						}
+					}
+				});
+				_t.borrowTypeLiClick(index);
+				
+				
+			});	
+		},
+		borrowTypeLiClick:function(index){
+		
+			$("#borrowTypelist").children('li').each(function(){
+                $(this).click(function(){
+                    var _$caller=$(this)
+                            ;
+                        $("#txttype").text(_$caller.text());
+                        $("#type").val(_$caller.attr("data-value"));
+                        $("#borrowTypelist").children('li').removeClass("active").find(".ic-ok").removeClass("icon icon-check");
+                        _$caller.addClass("active").find(".ic-ok").addClass("icon icon-check");
+                        layer.close(index);
+                });
+            });
+		}
+	};
+	
+
+	$(function(){
+		g.init();
+	});
+	
+}(Zepto,undefined);
+
+</script>
+</body>
+</html>

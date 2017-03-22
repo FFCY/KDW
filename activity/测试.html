@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <#include "/common/resource.html">
+</head>
+<body>
+<!--头部-->
+<div class="content good-list-page">
+    <header id="top" class="top">
+        <span class="top-title">活动</span>
+        <a href="javascript:void(0);" id="onExit" class="top_left">
+            <span class="icon icon-left"></span>
+        </a>
+        <a href="faqiActicity.html" class="top_right faQi">
+            发起
+        </a>
+    </header>
+    <section class="meun-list hide">
+        <!-- 订单状态 -->
+        <section class="hall-menu order-static hide" style="margin-top: 37px;">
+            <ul id="order-static">
+                <li class="active"><span>全部状态</span><span
+                        class="icon icon-check ic-ok"></span></li>
+                <li data-value="101"><span>发起中</span><span class="ic-ok"></span></li>
+                <li data-value="102"><span>洽谈中</span><span class="ic-ok"></span></li>
+                <li data-value="103"><span>已结束</span><span class="ic-ok"></span></li>
+            </ul>
+        </section>
+        <!-- 订单地址 -->
+        <section class="hall-menu order-address hide"
+                 style="margin-top: 37px;">
+            <div>
+                <ul id="order-address">
+
+                </ul>
+            </div>
+        </section>
+        <!-- 订单业务 -->
+        <section class="hall-menu order-business hide"
+                 style="margin-top: 37px;">
+            <ul id="order-business">
+                <li class="active"><span>全部</span><span
+                        class="icon icon-check ic-ok"></span></li>
+                <li data-value="301"><span>聚餐</span><span class="ic-ok"></span></li>
+                <li data-value="302"><span>交流会</span><span class="ic-ok"></span></li>
+                <li data-value="303"><span>其它</span><span class="ic-ok"></span></li>
+            </ul>
+        </section>
+    </section>
+    <section style="position: relative; z-index: 999;" class="divideTwoBar">
+        <ul id="list-nav" class="list-nav clearfix">
+            <li class="price" data-menu="order-address"><a
+                    href="javascript:void(0);"> <span id="order_address_text"
+                                                      class="nav-txt">全国</span> <span class="icon icon-down"></span> <span
+                    class="nav-biao">|</span>
+            </a></li>
+            <li id="" class="new" data-menu="order-static"><a
+                    href="javascript:void(0);"> <span id="order_static_text"
+                                                      class="nav-txt">全部</span> <span class="icon icon-down"></span> <span
+                    class="nav-biao">|</span>
+            </a></li>
+
+        </ul>
+
+    </section>
+    <!-- <section>
+        <ul class="navCheckUl borBottom backWhite">
+            <li>
+                <span>全国</span>
+                <span class="icon icon-down"></span>
+                <span class="greyLine"></span>
+            </li>
+            <li>
+                <span>全部活动</span>
+                <span class="icon icon-down"></span>
+            </li>
+        </ul>
+    </section> -->
+    <div id="appendConetent">
+        <#list jsonMap.partyList as jm>
+            <p class="marginP"><span>我的灰色间隙，不是空</span></p>
+            <div class="activCon backWhite positionRea">
+                <ul class="actTopDat borBottom borTop">
+                    <li class="acperImg">
+                        <img src="${jm.portraitUrl}"/>
+                    </li>
+                    <li class="acPer">
+                        <ul class="actRigUl">
+                            <li class="actName">${jm.realName}</li>
+                            <li class="actPlace">${jm.cityName}</li>
+                            <p class="actComName">${jm.companyName}</p>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="actUnder borBottom">
+                    <li class="actTitle">
+                        <span class="redBorSpan"><#if jm.type==701>聚餐<#elseif jm.type==702>交流会<#elseif jm.type==703>其他</#if></span>
+                        ${jm.title}
+                    </li>
+                    <li>
+                        <img src="..image/actClock.png" class="actLeftIcon"/>
+                        ${jm.startTime?number?number_to_datetime?string("yyyy-MM-dd HH:mm:ss")}
+                    </li>
+                    <li>
+                        <img src="..image/actDizhi.png" class="actLeftIcon" />
+                        ${jm.place}
+                    </li>
+                </ul>
+                <#if jm.status==0>
+                    <img src="..image/actQuxiao.png" class="quBigIcon" />
+                </#if>
+            </div>
+        </#list>
+    </div>
+
+
+    <p class="marginP"><span>我的灰色间隙，不是空</span></p>
+    <a href="">
+        <p class="rec-more" id="moreQualified" style="margin-bottom: 60px;">
+            <span></span>
+            <a style="display: block; text-align: center;">查看更多</a>
+        </p>
+    </a>
+</div>
+<#include "/common/footerlayout.html">
+    <script type="text/javascript">
+        !function($){
+            var g={
+                init:function(){
+                    var _t=this;
+                    /*点击发起*/
+                    _t.faqiClick();
+                    /*是否加载省份*/
+                    _t.province = !1;
+                    /*省份信息*/
+                    _t.provinceJson = "";
+                    /*是否加载业务*/
+                    _t.business = !1;
+
+                    /*菜单列表初始化*/
+                    _t.orderOstateClickInit();
+                    /*加载地址*/
+                    _t.orderAddressClick();
+                    /*加载业务*/
+                    _t.orderBusinessClick();
+                    /*加载订单状态*/
+                    _t.staticClick();
+                    _t.triggerInit();
+
+                },
+                /*点击发起*/
+                faqiClick:function(){
+                    var t=this;
+                    $(".faQi").click(function(){
+                        console.log("dddd");
+                    });
+                },
+                /*菜单列表*/
+                orderOstateClickInit : function() {
+                    var _t = this;
+                    $("#list-nav") .children('li') .each(function() {
+                                $(this) .click(function() {
+                                            var _caller = $(this), menu = _caller.attr("data-menu"),
+                                                  menu_list = $(".meun-list");
+                                                  menu_list.show();
+                                            /*订单状态*/
+                                            if (menu == "order-static") {
+                                                $( ".order-static") .show();
+                                                $(".order-address").hide();
+                                                $( ".order-business") .hide();
+
+                                            }
+                                            /*全国*/
+                                            else if (menu == "order-address") {
+                                                $(".order-address") .show();
+                                                $(".order-static").hide();
+                                                $(".order-business") .hide();
+
+                                            }
+                                            /*业务*/
+                                            else {
+                                                $(".order-business") .show();
+                                                $(".order-static") .hide();
+                                                $(".order-address") .hide();
+
+                                            }
+                                        });
+                            });
+                },
+                /*业务*/
+                orderBusinessClick : function() {
+                    var hid_value = $("#txttypeHidden").val();
+                    if (!!hid_value) {
+                        $("#order-business").children('li') .each(function() {
+                                    var _caller = $(this), data_value = _caller.attr("data-value");
+
+                                    if (data_value == hid_value) {
+                                        var menu = _caller.attr("data-menu"), menu_list = $(".meun-list"), order_static = $(".order-business");
+                                        $("#order_business_text").text(_caller.text()).attr( "data-value",_caller.attr("data-value"));
+                                        $("#order-business").children('li').removeClass("active").find(".ic-ok").removeClass("icon icon-check");
+                                        _caller.addClass("active").find(".ic-ok").addClass("icon icon-check");
+                                    }
+                                });
+                    }
+                    $("#order-business") .children('li') .each( function() {
+                                $(this).click(function() {
+                                            var _caller = $(this), menu = _caller.attr("data-menu"), menu_list = $(".meun-list"), order_static = $(".order-business");
+                                            //点击全部业务相关的选项触发的相关的事件
+                                            var jsonData = {
+                                                loanType : _caller
+                                                        .attr("data-value"),
+                                                type : 3
+                                            };
+                                            refreshByCondiction(jsonData);
+                                            $("#order_business_text").text(_caller.text()).attr("data-value",_caller.attr("data-value"));
+                                            $("#order-business").children('li').removeClass("active").find(".ic-ok").removeClass("icon icon-check");
+                                            _caller.addClass("active").find(".ic-ok").addClass("icon icon-check");
+                                            menu_list.hide();
+                                            order_static.hide();
+                                        });
+                            });
+                },
+                /*全国下拉框:直辖市和省*/
+                orderAddressClick : function() {
+
+                    var _t = this;
+                    if (_t.province) {
+                        /*加载当前省下的市*/
+                        _t.cityAddressClick(_t.provinceJson);
+                    } else {
+
+                        window
+                                .getAjaxData(
+                                {
+                                    url : "${ctx}/apiOther/provincesAndcitys.htm"
+                                },
+                                function(json) {
+                                    var hid_value = $(
+                                            "#txtprovinceHidden").val();
+                                    if (!!hid_value) {
+                                        $("#order-address").html("").append( ' <li ><span>全国</span><span class="ic-ok"></span></li>');
+
+                                    } else {
+                                        $("#order-address").html("").append(' <li class="active"><span>全国</span><span class="icon icon-check ic-ok"></span></li>');
+
+                                    }
+                                    var html = "";
+                                    for (var i = 0, len = json.length; i < len; i++) {
+                                        if (!!hid_value
+                                                && json[i].id == hid_value) {
+                                            html += " <li class='active' data-index='"+i+"'  data-citysLength='"+json[i].citys.length+"'  data-value='"+json[i].id+"'><span>"
+                                                    + json[i].name
+                                                    + "</span><span class='icon icon-check ic-ok'></span></li>";
+                                            $("#order_address_text")
+                                                    .text(json[i].name)
+                                                    .attr("data-value",
+                                                    json[i].id);
+
+                                        } else {
+                                            html += " <li data-index='"+i+"'  data-citysLength='"+json[i].citys.length+"'  data-value='"+json[i].id+"'><span>"
+                                                    + json[i].name
+                                                    + "</span><span class='ic-ok'></span></li>";
+
+                                        }
+
+                                    }
+
+                                    $("#order-address").append(html);
+                                    /* var address_height= document.body.clientHeight- $("#footer").height()-$("#top").height(); */
+                                    var address_height = document.body.clientHeight
+                                            - $("#top").height();
+                                    //alert(document.body.clientHeight+"---"+$("#footer").height()+"--"+$("#top").height());
+                                    $(".order-address").css({
+                                        "height" : address_height,
+                                        "width" : "100%"
+                                    });
+                                    //alert(address_height);
+                                    /*创建一个滚动条*/
+                                    var addressScroll = new IScroll(
+                                            ".order-address", {
+                                                scrollX : !1,
+                                                scrollY : !0,
+                                                click : !0,
+                                                preventDefault : !0
+                                            });
+                                    setTimeout(function() {
+                                        /*加载当前省下的市*/
+                                        _t.cityAddressClick(json);
+                                        /*已经加载省份*/
+                                        _t.province = !0;
+                                        _t.provinceJson = json;
+                                    }, 0);
+
+                                });
+                    }
+                },
+                /*全部状态下拉框*/
+                staticClick : function() {
+                    var hid_value = $("#txtstatusHidden").val();
+                    if (!!hid_value) {
+                        $("#order-static")
+                                .children('li')
+                                .each(
+                                function() {
+                                    var _caller = $(this), data_value = _caller
+                                            .attr("data-value");
+
+                                    if (data_value == hid_value) {
+                                        var menu = _caller
+                                                .attr("data-menu"), menu_list = $(".meun-list"), order_static = $(".order-static");
+                                        $("#order_static_text")
+                                                .text(_caller.text())
+                                                .attr(
+                                                "data-value",
+                                                _caller
+                                                        .attr("data-value"));
+                                        $("#order-static")
+                                                .children('li')
+                                                .removeClass("active")
+                                                .find(".ic-ok")
+                                                .removeClass(
+                                                "icon icon-check");
+                                        _caller
+                                                .addClass("active")
+                                                .find(".ic-ok")
+                                                .addClass(
+                                                "icon icon-check");
+
+                                    }
+
+                                });
+                    }
+
+                    $("#order-static")
+                            .children('li')
+                            .each(
+                            function() {
+                                $(this)
+                                        .click(
+                                        function() {
+                                            var _caller = $(this), menu = _caller
+                                                    .attr("data-menu"), menu_list = $(".meun-list"), order_static = $(".order-static");
+                                            var jsonData = {
+                                                status : _caller
+                                                        .attr("data-value"),
+                                                type : 1
+                                            };
+                                            refreshByCondiction(jsonData);
+                                            $(
+                                                    "#order_static_text")
+                                                    .text(
+                                                    _caller
+                                                            .text())
+                                                    .attr(
+                                                    "data-value",
+                                                    _caller
+                                                            .attr("data-value"));
+                                            $("#order-static")
+                                                    .children(
+                                                    'li')
+                                                    .removeClass(
+                                                    "active")
+                                                    .find(
+                                                    ".ic-ok")
+                                                    .removeClass(
+                                                    "icon icon-check");
+                                            _caller
+                                                    .addClass(
+                                                    "active")
+                                                    .find(
+                                                    ".ic-ok")
+                                                    .addClass(
+                                                    "icon icon-check");
+                                            menu_list.hide();
+                                            order_static.hide();
+                                        });
+                            });
+                },
+                /*省下面的市*/
+                cityAddressClick : function(json) {
+                    var _t = this;
+
+                    $("#order-address")
+                            .children('li')
+                            .each(
+                            function() {
+                                $(this)
+                                        .on(
+                                        "click",
+                                        function() {
+
+                                            var _caller = $(this);
+
+                                            /*省下面有市*/
+                                            if (_caller
+                                                            .attr("data-citysLength") > 0) {
+                                                var hid_value = $(
+                                                        "#txtcityHidden")
+                                                        .val();
+                                                var list = json[_caller
+                                                        .attr("data-index")].citys;
+                                                var con = ' <div id="open-city-list" class="open-list-info" style="width: 100%;">\
+		   								 <ul id="cityList">';
+                                                for (var i = 0, len = list.length; i < len; i++) {
+                                                    if (list[i].id == hid_value) {
+                                                        con += "<li  class='active' data-value='"+list[i].id+"'>"
+                                                                + list[i].name
+                                                                + "<span class='ic-ok icon icon-check'></span></li>";
+                                                        $(
+                                                                "#order_address_text")
+                                                                .text(
+                                                                json[i].name)
+                                                                .attr(
+                                                                "data-value",
+                                                                json[i].id);
+
+                                                    } else {
+                                                        con += "<li  data-value='"+list[i].id+"'>"
+                                                                + list[i].name
+                                                                + "<span class='ic-ok'></span></li>";
+
+                                                    }
+                                                }
+
+                                                con += ' </ul></div>';
+
+                                                var index = layer
+                                                        .open({
+                                                            scrollbar : !0,
+                                                            content : con,
+                                                            style : "width:250px;overflow:hidden;",
+                                                            success : function() {
+                                                                var heig_body = document.body.clientHeight - 40;
+                                                                var heig_li = $(
+                                                                        "#cityList")
+                                                                        .children(
+                                                                        "li")[0].offsetHeight;
+                                                                /*市的数据过多时，创建一个滚动 */
+                                                                if (heig_li
+                                                                        * len >= heig_body) {
+                                                                    $(
+                                                                            "#open-city-list")
+                                                                            .css(
+                                                                            "height",
+                                                                            heig_body);
+                                                                    var cityScroll = new IScroll(
+                                                                            "#open-city-list",
+                                                                            {
+                                                                                scrollX : !1,
+                                                                                scrollY : !0,
+                                                                                click : !0,
+                                                                                preventDefault : !0
+                                                                            });
+                                                                }
+                                                            }
+                                                        });
+
+                                                /*点击市*/
+                                                _t
+                                                        .cityClickAfter(
+                                                        index,
+                                                        _caller);
+                                            }
+                                            /*点击直辖市*/
+                                            else {
+                                                var value = _caller
+                                                        .attr("data-value"), text = _caller
+                                                        .text()
+                                                /*--点击直辖市的响应事件*/
+                                                $(
+                                                        "#order_address_text")
+                                                        .text(
+                                                        text)
+                                                        .attr(
+                                                        "data-value",
+                                                        value);
+                                                var jsonData = {
+                                                    city : value,
+                                                    text : text,
+                                                    type : 2
+                                                };
+                                                refreshByCondiction(jsonData);
+                                                $(
+                                                        "#order-address")
+                                                        .children(
+                                                        "li")
+                                                        .removeClass(
+                                                        "active")
+                                                        .find(
+                                                        ".ic-ok")
+                                                        .removeClass(
+                                                        "icon icon-check");
+                                                _caller
+                                                        .addClass(
+                                                        "active")
+                                                        .find(
+                                                        ".ic-ok")
+                                                        .addClass(
+                                                        "icon icon-check");
+                                                $(
+                                                        ".order-address")
+                                                        .hide();
+                                                $(".meun-list")
+                                                        .hide();
+                                            }
+
+                                        });
+                            });
+                },
+                /*点击市*/
+                cityClickAfter : function(index, _pcaller) {
+                    $("#cityList")
+                            .children('li')
+                            .each(
+                            function() {
+                                $(this)
+                                        .click(
+                                        function() {
+                                            var _$caller = $(this), value = _$caller
+                                                    .attr("data-value"), text = _$caller
+                                                    .text();
+                                            var jsonData = {
+                                                city : value,
+                                                text : text,
+                                                type : 2
+                                            };
+                                            refreshByCondiction(jsonData);
+                                            _$caller
+                                                    .addClass(
+                                                    "active")
+                                                    .find(
+                                                    ".ic-ok")
+                                                    .addClass(
+                                                    "icon icon-check");
+                                            $(".order-address")
+                                                    .hide();
+                                            $(".meun-list")
+                                                    .hide();
+                                            layer.close(index);
+                                            $(
+                                                    "#order_address_text")
+                                                    .text(text)
+                                                    .attr(
+                                                    "data-value",
+                                                    value);
+                                            $("#order-address")
+                                                    .children(
+                                                    "li")
+                                                    .removeClass(
+                                                    "active")
+                                                    .find(
+                                                    ".ic-ok")
+                                                    .removeClass(
+                                                    "icon icon-check");
+                                            _pcaller
+                                                    .addClass(
+                                                    "active")
+                                                    .find(
+                                                    ".ic-ok")
+                                                    .addClass(
+                                                    "icon icon-check");
+                                        });
+
+                            });
+                },
+                /*触发点击*/
+                triggerInit : function() {
+                    var parames = {
+                        "status" : 101,
+                        "city" : 22,
+                        "type" : 303,
+                        "province" : 12
+                    };
+                }
+            };
+            $(function(){
+                g.init();
+                $(".meun-list").click(
+                        function() {
+                            if ($(".order-static").css("display") == "block"|| $(".order-business ").css("display") == "block")
+                                $(this).hide();
+                        });
+
+            });
+
+        });
+        }(Zepto);
+        var page = 1;
+        //城市
+        var city;
+        //单子状态
+        var status;
+        //类型
+        var loanType;
+        //更过动态
+        $("#moreQualified").click(function() {
+            var data = {};
+            data.page = page;
+            data.async = 2;
+            //抢单大厅是三种条件的选择判断
+            if (!isNull(status)) {//抢单大厅的状态
+                data.status = status;
+            }
+            if (!isNull(city)) {//抢单大厅的全国的城市的范围
+                data.city = city;
+            }
+            if (!isNull(loanType)) {//抢单大厅的全部业务
+                data.status = loanType;
+            }
+            $.ajax({
+                url : "${request.getContextPath()}/apiParty/partyList",
+                data : data,
+                dataType : "html",
+                success : function(data) {
+                    page++;
+                    if ($.trim(data).length > 0) {
+                        $(data).appendTo($("#appendConetent"));
+                        alert(page);
+                        $("#moreQualified").css("display", "block");
+                    } else {
+                        layer.open({
+                            content : "已加载完全部数据",
+                        });
+
+                    }
+                }
+            })
+        });
+    </script>
+</body>
+</html>

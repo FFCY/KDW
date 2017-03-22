@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../css/sm.min.css">
+    <link rel="stylesheet" href="../css/sm-extend.min.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/name-card.css">
+</head>
+<body>
+
+<div class="page-group zIndex10">
+    <div class="page page-current" >
+
+        <!--主体内容-->
+        <div class="content">
+            <!--头部-->
+            <header class="top">
+                <span class="top-title">身份确认</span>
+                <a href="#" class="top_left">
+                    <span class="icon icon-left"></span>
+                </a>
+                <a href="#" class="top_right">
+                </a>
+            </header>
+
+            <p class="messgTips">短信验证码已发送到手机<span class="redFont">199***88</span></p>
+            <form action="">
+                <ul class="recmRegBlock">
+                    <li class="wbox">
+                        <p class="leftSpan">手机号</p>
+                        <div class="wbox-flex">
+                            <input type="number" placeholder="请输入手机号"/>
+                        </div>
+                    </li>
+                    <li class="wbox">
+                        <p class="leftSpan">验证码</p>
+                        <div class="wbox-flex">
+                            <input type="text" placeholder="验证码"/>
+                        </div>
+                        <p class="sendBtn">
+                            <input type="button" value="重新发送" class="secondBtn"/>
+                        </p>
+                    </li>
+
+                    <li class="wbox">
+                        <p class="leftSpan">密&nbsp;&nbsp;&nbsp;码</p>
+                        <div class="wbox-flex">
+                            <input type="password" placeholder="请输入密码"/>
+                       </div>
+                    </li>
+                    <li class="wbox">
+                        <p class="leftSpan">推荐码</p>
+                        <div class="wbox-flex">
+                            <input type="text" placeholder="推荐码（选填）"/>
+                        </div>
+                    </li>
+                </ul>
+                <p class="greyMt14"></p>
+                <p class="yinsiP">甩单乐会严格保密用户信息隐私</p>
+                <p class="submitForm mtb14">
+                    <a href="#">同意协议并注册</a>
+                </p>
+                <p class="yinsiP">注册即视为同意<span class="blueFont">《甩单乐用户服务协议》</span></p>
+            </form>
+            <!-- 订单列表 -->
+          </div>
+    </div>
+</div>
+
+<script type='text/javascript' src='../js/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/sm-extend.min.js' charset='utf-8'></script>
+<script>
+    (function($){
+        var g={
+            init:function(){
+                var _t=this;
+                //点击倒计时
+                _t.countdown();
+            },
+            countdown:function(){
+                $('.secondBtn').click(function () {
+                    var countdown=59;
+                    settime(this);
+                    function settime(obj) {
+                        if (countdown == 0) {
+                            obj.removeAttribute("disabled");
+                            obj.value="发送验证码";
+                            countdown = 59;
+                            return;
+                        } else {
+                            obj.setAttribute("disabled", true);
+                            obj.value="" + countdown + "s";
+                            countdown--;
+                        }
+                        setTimeout(function() {
+                                    settime(obj) }
+                                ,1000)
+                    }
+
+                });
+            }
+        }
+        $(function(){
+            g.init();
+        });
+    })($);
+</script>
+</body>
+</html>

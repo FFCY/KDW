@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../css/sm.min.css">
+    <link rel="stylesheet" href="../css/sm-extend.min.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/name-card.css">
+</head>
+<script>
+    /*全局配置*/
+    var  CONFIG={
+        /*当前上下文目录*/
+        //winBaseUrl:'${ctx}',
+        winBaseUrl:"../"
+
+    };
+</script>
+<body>
+<!--头部-->
+<div class="content ">
+    <div class="ceng"  ></div>
+    <header id="top" class="top">
+        <span class="top-title">活动</span>
+        <a href="javascript:void(0);" id="onExit" class="top_left">
+            <span class="icon icon-left"></span>
+        </a>
+        <a href="faqiActicity.html" class="top_right faQi">
+            发起
+        </a>
+    </header>
+    <!--filter condition-->
+    <div class="filter-wrap">
+        <!--head-->
+        <ul id="list-nav" class="filter-header list-nav clearfix">
+
+            <li class="filter-header-li2 " style="width: 50%" >
+                <a href="javascript:void(0);">
+                    <span data-value="-1" id="order_address_text" class="nav-txt">全国</span>
+                    <span class="icon icon-down"></span>
+                    <span class="nav-biao">|</span>
+                </a>
+            </li>
+            <li class="filter-header-li3" style="width: 50%" >
+                <a href="javascript:void(0);">
+                    <span data-value="-1" id="order_business_text" class="nav-txt">全部聚会</span>
+                    <span class="icon icon-down"></span>
+                </a>
+            </li>
+        </ul>
+        <!--body-->
+        <div class="filter-body">
+            <div class="filter-body-d2 filter-address"></div>
+            <div class="filter-body-d3">
+                <ul>
+                    <li data-value="-1">全部聚会<span class="icon icon-check ic-class"></span></li>
+                    <li data-value="701">聚餐<span class="icon icon-check ic-class"></span></li>
+                    <li data-value="702">交流会<span class="icon icon-check ic-class"></span></li>
+                    <li data-value="703">其它<span class="icon icon-check ic-class"></span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="filter-body-content">
+            <div class="filter-body-content-d2 filter-address">
+
+            </div>
+        </div>
+    </div>
+    <!--内容-->
+    <div id="wrapper" >
+        <div id="scroller">
+            <div class="ui-loading-wrap" id="pullDown">
+                <p class="pullDownLabel"></p>
+            </div>
+            <ul id="thelist" class="wapLoanConse">
+
+            </ul>
+            <div class="ui-loading-wrap" id="pullUp">
+                <p class="pullUpLabel"></p>
+            </div>
+        </div>
+    </div>
+    <nav id="footer-nav" class="bar bar-tab wxFoot">
+        <a class="tab-item external " onclick="openHref('/kdw-wx/apiIndex/indexData')" href="#">
+            <span class="icon icon-home"></span>
+            <span class="tab-label">首页</span>
+        </a>
+        <a class="tab-item external " onclick="openHref('/kdw-wx/apiOrder/orderList')" href="#">
+            <span class="icon icon-Qiang"></span>
+            <span class="tab-label">抢单</span>
+            <!-- <span class="badge">2</span> -->
+        </a>
+        <a class="tab-item external " onclick="openHref('/kdw-wx/apiCircle/circleList')" href="#">
+            <span class="icon icon-star"></span>
+            <span class="tab-label">圈子</span>
+        </a>
+        <a class="tab-item external  active" onclick="openHref('/kdw-wx/apiParty/partyList')" href="#">
+            <span class="icon icon-cart"></span>
+            <span class="tab-label">聚会</span>
+        </a>
+        <a class="tab-item external " onclick="openHref('/kdw-wx/apiAccount/baseInfo')" href="#">
+            <span class="icon icon-settings"></span>
+            <span class="tab-label">我的</span>
+        </a>
+    </nav>
+</div>
+<script type='text/javascript' src='../js/zepto.min.js' charset='utf-8'></script>
+
+<script type='text/javascript' src='../js/base.js' charset='utf-8'></script>
+<script type="text/javascript" src="../js/layer/layer.js"></script>
+<script type='text/javascript' src='../js/iscroll4.2.5.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/iscroll.js' charset='utf-8'></script>
+
+<script>
+    var addressScroll,/*省份滚动条*/
+        addressScroll_height,/*圈子列表的高度*/
+        $cond1,/*地址栏参数一*/
+        $cond2,/*地址栏参数一*/
+        $cond3,/*地址栏参数一*/
+        $cond4,/*地址栏参数一*/
+        ajaxAddressUrl /*省份请求地址*/
+            ;
+    /*获取参数*/
+    getQueryString('cond1')?$cond1=getQueryString('cond1'):$cond1='-1';
+    getQueryString('cond2')?$cond2=getQueryString('cond2'):$cond2='-1';
+    getQueryString('cond3')?$cond3=getQueryString('cond3'):$cond3='-1';
+    //省份
+    getQueryString('cond4')?$cond4=getQueryString('cond4'):$cond4='-1';
+    ajaxAddressUrl=CONFIG.winBaseUrl+"json/provincesAndcitys.json";
+    addressScroll_height= document.body.clientHeight-$("#top").height()-$("#list-nav").height()-$("#footer-nav").height();
+    $(function(){
+        // 顶部筛选
+        $.get(ajaxAddressUrl, function (response) {
+            var ajaxJson=response;
+            var $filter02='<ul>';
+            $filter02+='<li  data-value="-1" data-citys="0">全国 <span class="icon icon-check ic-class"></span></li>';
+            var $filter02_content="";
+            $.each(ajaxJson,function(key,value){
+                var len=value.citys.length;
+                $filter02+='<li  data-value="'+value.id+'" data-citys="'+len+'">'+value.name+' <span class="icon icon-check ic-class"></span></li>';
+
+                if(len>0){
+                    $filter02_content='<div><ul data-parent="'+value.id+'">';
+                    var content=value.citys;
+                    for(var i= 0;i<len;i++){
+                        $filter02_content+='<li data-value="'+content[i].id+'">'+content[i].name+' <span class="icon icon-check ic-class"></span></li>';
+                    }
+                    $filter02_content+="</ul></div>";
+                    $('.filter-body-content-d2').append($filter02_content);
+                }
+            });
+
+            $('.filter-body-d2').html($filter02);
+
+            function hideCity(){
+                //隐藏城市
+                $('.filter-body-content-d2').hide();
+                $('.filter-body-content-d2').children(".on").attr({"style":""});
+                $('.filter-body-content-d2').children(".on").children("ul").attr({"style":""});
+                $('.filter-body-content-d2').children(".on").removeClass("on");
+                (addressScroll)&&addressScroll.destroy();
+            }
+            //筛选器部分
+            $('.filter-header li').on('click',function(){
+                var $number=$(this).index()+2;
+                $('.ceng').show();
+                $('.filter-body-d'+$number).show().siblings('div').hide();
+                hideCity();
+                $(this).addClass('on').siblings('li').removeClass('on');
+
+                $(this).siblings('li').attr('data-val','');
+                var data_val=$(this).attr('data-val');
+                if(data_val!='1'){
+                    $(this).attr('data-val','1').addClass('on');
+                    $('.filter-body-d'+$number).show();
+                    $('.ceng').show();
+                }else{
+                    $(this).attr('data-val','').removeClass('on');
+                    $('.ceng').hide();
+                    $('.filter-body-d'+$number).hide();
+                }
+                //判断下拉类表高度是否大于定值230px
+                if($('.filter-body-d'+$number).children('ul').height()>230){
+
+                    //如果是地址
+                    if($('.filter-body-d'+$number).hasClass("filter-address")){
+                        $('.filter-body-d'+$number).css({"height":addressScroll_height});
+                    }else{
+                        $('.filter-body-d'+$number).css({"height":"254px"});
+                    }
+                }else{
+                    $('.filter-body-d'+$number).css({"height":"auto"});
+                }
+                var scroll = new IScroll('.filter-body-d'+$number, {
+                    scrollY: !0,
+                    scrollX:!1,
+                    click:!0
+                });
+            });
+            //点击弹层消失
+            $('.ceng').click(function(){
+                $('.filter-header li').attr('data-val','').removeClass('on');
+                $('.ceng').hide();
+                $('.filter-body div').hide();
+            });
+
+
+            //筛选条件脚本--下拉选中一项处理动作
+            $('.filter-body-d1 ul li').on('click',function(){
+                $get_cond1=$(this).attr('data-value');
+                $get_cond2=$('.filter-header-li2 .nav-txt').attr('data-value');
+                $get_cond3=$('.filter-header-li3 .nav-txt').attr('data-value');
+                get_condition($get_cond1,$get_cond2,$get_cond3,$cond4);
+            });
+            $('.filter-body-d2 ul li').on('click',function(){
+                var _caller=$(this);
+                //如果有子城市
+                if(_caller.attr("data-citys")>0){
+                    $cond4=_caller.attr('data-value');
+                    $(".filter-body-content-d2").children().children("ul").each(function(){
+                        var _caller_1=$(this);
+                        if(_caller_1.attr("data-parent")==_caller.attr("data-value")){
+                            _caller_1.show();
+                            _caller_1.parent().addClass("on").parent().show();
+                            _caller_1.parent().css({"height":addressScroll_height});
+                            addressScroll = new IScroll($(".filter-body-content-d2").children(".on")[0], {
+                                scrollY: !0,
+                                scrollX:!1,
+                                click:!0
+                            });
+                        }
+                        //筛选条件脚本：城市
+                        _caller_1.children("li").on("click",function(){
+                            $get_cond1=$('.filter-header-li1 .nav-txt').attr('data-value');
+                            $get_cond2=$(this).attr('data-value');
+                            $get_cond3=$('.filter-header-li3 .nav-txt').attr('data-value');
+                            get_condition($get_cond1,$get_cond2,$get_cond3,$cond4);
+                        });
+
+                    });
+                }else{
+                    $cond4=-1;
+                    $get_cond1=$('.filter-header-li1 .nav-txt').attr('data-value');
+                    $get_cond2=$(this).attr('data-value');
+                    $get_cond3=$('.filter-header-li3 .nav-txt').attr('data-value');
+                    get_condition($get_cond1,$get_cond2,$get_cond3,$cond4);
+                }
+            });
+            $('.filter-body-d3 ul li').on('click',function(){
+                $get_cond1=$('.filter-header-li1 .nav-txt').attr('data-value');
+                $get_cond2=$('.filter-header-li2 .nav-txt').attr('data-value');
+                $get_cond3=$(this).attr('data-value');
+                get_condition($get_cond1,$get_cond2,$get_cond3,$cond4);
+
+
+            });
+
+            //初始状态 筛选器默认显示名称
+            $(".filter-body-d1").children("ul").children("li").each(function(){
+                var _caller=$(this);
+                if(_caller.attr("data-value").trim()==$cond1){
+                    _caller.addClass('on');
+                    $('.filter-header-li1 .nav-txt').text(_caller.text()).attr('data-value',$cond1);
+                    return true;
+                }
+            });
+            // 如果选择的直辖市
+            if($cond4=="-1"){
+                $(".filter-body-d2").children("ul").children("li").each(function(){
+                    var _caller=$(this);
+                    if(_caller.attr("data-value").trim()==$cond2){
+                        _caller.addClass('on');
+                        $('.filter-header-li2 .nav-txt').text(_caller.text()).attr('data-value',$cond2);
+                    }
+                    return true;
+                });
+            }
+            //选择了省份
+            else{
+                $(".filter-body-content-d2 ").children("div").children("ul").each(function(){
+                    var _caller=$(this);
+                    // 先绑定 市
+                    if(_caller.attr("data-parent").trim()==$cond4){
+                        _caller.parent().addClass('on');
+                        _caller.children("li").each(function(){
+                            var _caller=$(this);
+                            if(_caller.attr("data-value").trim()==$cond2){
+                                _caller.addClass('on');
+                                $('.filter-header-li2 .nav-txt').text(_caller.text()).attr('data-value',$cond2);
+                            }
+                            return true;
+                        });
+                        // 再绑定 省
+                        $(".filter-body-d2").children("ul").children("li").each(function(){
+                            var _caller=$(this);
+                            if(_caller.attr("data-value").trim()==$cond4){
+                                _caller.addClass('on');
+
+                            }
+                            return true;
+                        });
+
+                    }
+                    return true;
+                });
+            }
+
+            $(".filter-body-d3").children("ul").children("li").each(function(){
+                var _caller=$(this);
+                if(_caller.attr("data-value").trim()==$cond3){
+                    _caller.addClass('on');
+                    $('.filter-header-li3 .nav-txt').text(_caller.text()).attr('data-value',$cond3);
+                }
+                return true;
+            });
+            //跳转函数
+            function get_condition(a,b,c,d){
+                window.location='./activityList.html?cond1='+a+'&cond2='+b+'&cond3='+c+'&cond4='+d;
+            }
+        });
+    });
+</script>
+<script>
+    var args,/*ajax请求参数*/
+            ajaxPartyListUrl,/*party列表的请求的url*/
+            myScroll,/*party列表的滚动条*/
+            scrollObj_height,/*圈子列表的高度*/
+            Defaul;
+    args={
+        page:1,
+        async:2,
+        city:$cond2,
+        type:$cond3,
+        pageNum:10
+    };
+    scrollObj_height= addressScroll_height-2;
+    ajaxPartyListUrl=CONFIG.winBaseUrl+"json/partyList.html";
+    document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+
+    document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 20); }, false);
+
+    function AjaxLoad(isfirstload){
+        var $list="";
+        getAjaxData({
+            url:ajaxPartyListUrl,
+            data:args,
+            dataType : "html"
+        }, function(data){
+            appendHmtl(data,isfirstload);
+        });
+    }
+    //上拉刷新
+    function pullDownAction () {
+        args.page="1";
+        AjaxLoad("1");
+    }
+    //下拉加载
+    function pullUpAction () {
+        setTimeout(function () {
+            args.page=args.page+1;
+            AjaxLoad();
+        },400);
+    }
+    //初始状态
+    function loaded() {
+        AjaxLoad("1");
+    }
+    function appendHmtl(data,isfirstload){
+        if ($.trim(data).length > 0) {
+            //  第一页
+            if(isfirstload){
+                $('#thelist').empty().append($(data));
+                refreshScroll();
+            }
+            else{
+                $('#thelist').append($(data));
+            }
+            (myScroll)&&myScroll.refresh();
+        }else {
+            //  第一页
+            if(isfirstload){
+                var $list="";
+                $list += '<li class="uu-list-nothings"><p class="uu-list-nothings-p">暂无记录</p></li>';
+                $('#thelist').empty().append($list);
+                (myScroll)&&myScroll.refresh();
+            }
+            else{
+                pullUpEl.querySelector('.pullUpLabel').innerHTML = '已经没有了';
+            }
+        }
+    }
+
+    //  上拉下拉
+    function refreshScroll(){
+        if(myScroll){
+            myScroll.destroy();
+            myScroll = null;
+        }
+        pullDownEl = document.getElementById('pullDown');
+        pullDownOffset = pullDownEl.offsetHeight;
+        pullUpEl = document.getElementById('pullUp');
+        pullUpOffset = pullUpEl.offsetHeight;
+        var scrollObj=$("#wrapper");
+
+        scrollObj.css({"height":scrollObj_height,"width":"100%"});
+        myScroll = new iScroll('wrapper', {
+            useTransition: true,
+            topOffset: pullDownOffset,
+            onRefresh: function () {
+                if (pullDownEl.className.match('loading')) {
+                    pullDownEl.className = '';
+                    pullDownEl.querySelector('.pullDownLabel').innerHTML = '下拉刷新';
+                } else if (pullUpEl.className.match('loading')) {
+                    pullUpEl.className = '';
+                    pullUpEl.querySelector('.pullUpLabel').innerHTML = '上拉加载';
+                }
+            },
+            onScrollMove: function () {
+                if (this.y > 5 && !pullDownEl.className.match('flip')) {
+                    pullDownEl.className = 'flip';
+                    pullDownEl.querySelector('.pullDownLabel').innerHTML = '释放刷新';
+                    this.minScrollY = 0;
+                } else if (this.y < 5 && pullDownEl.className.match('flip')) {
+                    pullDownEl.className = '';
+                    pullDownEl.querySelector('.pullDownLabel').innerHTML = '释放刷新';
+                    this.minScrollY = -pullDownOffset;
+                } else if (this.y < (this.maxScrollY - 5) && !pullUpEl.className.match('flip')) {
+                    pullUpEl.className = 'flip';
+                    pullUpEl.querySelector('.pullUpLabel').innerHTML = '释放刷新';
+                    this.maxScrollY = this.maxScrollY;
+                } else if (this.y > (this.maxScrollY + 5) && pullUpEl.className.match('flip')) {
+                    pullUpEl.className = '';
+                    pullUpEl.querySelector('.pullUpLabel').innerHTML = '释放刷新';
+                    this.maxScrollY = pullUpOffset;
+                }
+            },
+            onScrollEnd: function () {
+                if (pullDownEl.className.match('flip')) {
+                    pullDownEl.className = 'loading';
+                    pullDownEl.querySelector('.pullDownLabel').innerHTML = '加载中...';
+                    pullDownAction();	// Execute custom function (ajax call?)
+                } else if (pullUpEl.className.match('flip')) {
+                    pullUpEl.className = 'loading';
+                    pullUpEl.querySelector('.pullUpLabel').innerHTML = '加载中...';
+                    pullUpAction();	// Execute custom function (ajax call?)
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

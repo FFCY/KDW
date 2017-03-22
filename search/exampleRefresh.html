@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>宝宝的小例子</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../css/sm.min.css">
+    <link rel="stylesheet" href="../css/sm-extend.min.css">
+    <!--css初始化-->
+    <link rel="stylesheet" href="../css/base.css">
+
+    <style>
+        #wrapper{
+
+        }
+    </style>
+</head>
+<body onload="loaded()">
+        <!--主体内容-->
+        <div id="wrapper">
+            <div id="scroller">
+                <ul class="domList">
+                    <li>我是一只小小小鸟</li>
+                    <li>飞呀飞不高</li>
+                    <li>飞呀飞不高</li>
+                    <li>飞呀飞不高</li>
+                    <li>飞呀飞不高</li>
+                    <li>飞呀飞不高</li>
+                    <li>飞呀飞不高</li>
+                    <li>飞呀飞不高</li>
+                    <li>飞呀飞不高</li>
+                    <li>飞呀飞不高</li>
+                    <li>飞呀飞不高</li>
+                    <li>飞呀飞不高</li>
+                    <li>飞呀飞不高</li>
+                    <li>飞呀飞不高</li>
+                    <li>飞呀飞不高</li>
+                    <li>飞呀飞不高</li>
+                    <li>飞呀飞不高</li>
+                    <li>飞呀飞不高</li>
+                    <li>飞呀飞不高</li>
+
+                </ul>
+            </div>
+        </div>
+
+
+<script type='text/javascript' src='../js/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/sm-extend.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/base.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/store.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/layer/layer.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/iscroll4.2.5.js' charset='utf-8'></script>
+ <script type='text/javascript' src='../js/iscroll.js' charset='utf-8'></script>
+<script>
+    !function(){
+        var g = {
+            init:function(){
+                var _t=this;
+            }
+
+        };
+        $(function(){
+            g.init();
+        })
+    }();
+</script>
+        <script>
+            var myscroll;
+            function loaded(){
+                setTimeout(function(){
+                    myscroll=new iScroll("wrapper");
+                    console.log("ddd");
+                },100 );
+            }
+            window.addEventListener("load",loaded,false);
+        </script>
+</body>
+</html>

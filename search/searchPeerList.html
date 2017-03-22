@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>寻找同行</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../css/sm.min.css">
+    <link rel="stylesheet" href="../css/sm-extend.min.css">
+    <!--css初始化-->
+    <link rel="stylesheet" href="../css/base.css">
+    <style>
+        .wapLoanConse .conseOne{
+            margin-top: 0;
+        }
+        .wapLoanConse{
+            margin-bottom: 0px;
+        }
+        .wapLoanConse .conOneCont .conseMess{
+            border: 0;
+        }
+        .conseOne{
+            border-bottom: 1px solid #dddddd;
+        }
+    </style>
+</head>
+<body>
+    <!--主体内容-->
+    <div class="content">
+        <!--头部-->
+        <header id="top" class="top">
+            <form id="from_search" action="./searchPeerList.html" method = 'post'  onsubmit = "">
+                <a href="./searchPeer.html" >
+                    <span id="topSearch" class="top-title" style=" width: 78%;">
+                        <i class="top-title-left"></i>
+                             <input id="txtSeach" readonly="readonly" name="search" type="search"  placeholder="姓名/手机号/公司" class="txt-seach" style="width: 78%">
+                        <i class="top-title-right"></i>
+                    </span>
+                </a>
+                <a href="#" class="top_left">
+                    <span class="icon icon-left"></span>
+                </a>
+                <a href="./searchPeer.html" class="top_right">
+                    <span id="iconSearch" class="icon icon-search"  style="font-size: 17px;"></span>
+                </a>
+            </form>
+        </header>
+        <!--内容-->
+        <div id="wrapper" >
+            <div id="scroller">
+                <div class="ui-loading-wrap" id="pullDown">
+                    <p class="pullDownLabel"></p>
+                </div>
+                <ul id="thelist" class="wapLoanConse">
+
+                </ul>
+                <div class="ui-loading-wrap" id="pullUp">
+                    <p class="pullUpLabel"></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+<script type='text/javascript' src='../js/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/sm-extend.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/base.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/store.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/layer/layer.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/iscroll4.2.5.js' charset='utf-8'></script>
+<script>
+
+    !function(){
+        var g={
+            init:function(){
+                var _t=this;
+                _t.xxx();
+
+
+            }
+
+            ,
+            /**/
+            xxx:function(){
+
+
+            }
+        };
+        $(function(){
+            g.init();
+        });
+    }();
+</script>
+<script>
+
+    /*禁止网页上滑下滑*/
+    document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+    /*监听文档加载事件*/
+    document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 20); }, false);
+    var myScroll,pullDownEl, pullDownOffset, pullUpEl, pullUpOffset,
+            $cond1;
+    /*获取参数*/
+    getQueryString('cond1')?$cond1=getQueryString('cond1'):$cond1='';
+    var args={
+        cond1:$cond1
+    };
+    //初始状态
+    function loaded() {
+        AjaxLoad();
+        pullDownEl = document.getElementById('pullDown');
+        pullDownOffset = pullDownEl.offsetHeight;
+        pullUpEl = document.getElementById('pullUp');
+        pullUpOffset = pullUpEl.offsetHeight;
+        var scrollObj=$("#wrapper");
+        var scrollObj_height= document.body.clientHeight-$("#top").height();
+        scrollObj.css({"height":scrollObj_height,"width":"100%"});
+        myScroll = new iScroll('wrapper', {
+            useTransition: true,
+            topOffset: pullDownOffset,
+            onRefresh: function () {
+                if (pullDownEl.className.match('loading')) {
+                    pullDownEl.className = '';
+                    pullDownEl.querySelector('.pullDownLabel').innerHTML = '下拉刷新';
+                } else if (pullUpEl.className.match('loading')) {
+                    pullUpEl.className = '';
+                    pullUpEl.querySelector('.pullUpLabel').innerHTML = '上拉加载';
+                }
+            },
+            onScrollMove: function () {
+                if (this.y > 5 && !pullDownEl.className.match('flip')) {
+                    pullDownEl.className = 'flip';
+                    pullDownEl.querySelector('.pullDownLabel').innerHTML = '释放刷新';
+                    this.minScrollY = 0;
+                } else if (this.y < 5 && pullDownEl.className.match('flip')) {
+                    pullDownEl.className = '';
+                    pullDownEl.querySelector('.pullDownLabel').innerHTML = '释放刷新';
+                    this.minScrollY = -pullDownOffset;
+                } else if (this.y < (this.maxScrollY - 5) && !pullUpEl.className.match('flip')) {
+                    pullUpEl.className = 'flip';
+                    pullUpEl.querySelector('.pullUpLabel').innerHTML = '释放刷新';
+                    this.maxScrollY = this.maxScrollY;
+                } else if (this.y > (this.maxScrollY + 5) && pullUpEl.className.match('flip')) {
+                    pullUpEl.className = '';
+                    pullUpEl.querySelector('.pullUpLabel').innerHTML = '释放刷新';
+                    this.maxScrollY = pullUpOffset;
+                }
+            },
+            onScrollEnd: function () {
+                if (pullDownEl.className.match('flip')) {
+                    pullDownEl.className = 'loading';
+                    pullDownEl.querySelector('.pullDownLabel').innerHTML = '加载中...';
+                    pullDownAction();	// Execute custom function (ajax call?)
+                } else if (pullUpEl.className.match('flip')) {
+                    pullUpEl.className = 'loading';
+                    pullUpEl.querySelector('.pullUpLabel').innerHTML = '加载中...';
+                   pullUpAction();	// Execute custom function (ajax call?)
+                }
+            }
+        });
+
+    }
+    function AjaxLoad(){
+        //显示预加载，防止用户操作
+        $.showIndicator();
+        var $list="";
+        /*请求地址*/
+        var requestUrl="../json/searchPeerList.json";
+        $.get(requestUrl,args, function(response){
+            //隐藏预加载
+            $.hideIndicator();
+            /*json转换格式*/
+            var ajaxJson=response;
+            if(ajaxJson.length){
+                $list+=resDataToHtml(ajaxJson);
+                $('#thelist').empty().append($list);
+
+
+                if(!response.length){
+                    pullUpEl.querySelector('.pullUpLabel').innerHTML = '已经没有了';
+                }
+            }else{
+                $list += '<li class="uu-list-nothings"><p class="uu-list-nothings-p">暂无记录</p></li>';
+                $('#thelist').empty().append($list);
+            }
+            myScroll.refresh();
+        });
+    }
+    //上拉刷新
+    function pullDownAction () {
+        AjaxLoad();
+    }
+    //下拉加载
+    function pullUpAction () {
+        setTimeout(function () {
+            //显示预加载，防止用户操作
+            $.showIndicator();
+            var requestUrl="../json/searchPeerList.json";
+            var $list='';
+            $.get(requestUrl,args, function(response){
+                //隐藏预加载
+                $.hideIndicator();
+                /*json转换格式*/
+                var ajaxJson=response;
+                if(ajaxJson.length){
+                    $list+=resDataToHtml(ajaxJson);
+
+                    $('#thelist').append($list);
+
+                    myScroll.refresh();
+                }else{
+                    pullUpEl.querySelector('.pullUpLabel').innerHTML = '已经没有了';
+                }
+            });
+
+        }, 400);
+    }
+    //返回数据拼接为HTML
+    function resDataToHtml(responseDataItems,innerCeng){
+        var $list=[];
+        $.each(responseDataItems, function(key, value){
+            //没有人物图片 ，就加载默认的人物图片
+            (!value.portraitUr)&&(value.portraitUr="../image/anonymous.jpg");
+            $list.push('<a href="peerList.html"> <div class="conseOne"> \
+                            <div class="conOneCont">\
+                                <div class="conseMess clear">\
+                                    <img src="'+value.portraitUr+'" class="left conseImg" />\
+                                    <div class="left">\
+                                        <p class="conseName"> <span class="conseNames">'+value.realName+'</span>\
+                                        </p>\
+                                        <p class="conmpany">'+value.companyName+'</p>\
+                                    </div>\
+                                    <div class="right">\
+                                        <p class="answertime hidden"> '+value.cityName+' </p>\
+                                    </div>\
+                                </div>\
+                            </div>\
+                         </div></a>');
+        });
+        return $list.join("");
+    }
+</script>
+</body>
+</html>

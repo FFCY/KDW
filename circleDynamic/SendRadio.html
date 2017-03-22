@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../css/sm.min.css">
+    <link rel="stylesheet" href="../css/sm-extend.min.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/name-card.css">
+</head>
+<body>
+<!--头部-->
+<div class="content good-list-page">
+    <header id="top" class="top">
+        <a href="javascript:void(0);" class="top_left">
+            <span class="icon icon-left"></span>
+        </a>
+        <span class="top-title">活动详情</span>
+        <a href="circleList.html" class="top_right faQi">
+            发布
+        </a>
+    </header>
+    <div class="activCon backWhite borBottom">
+    <div class="ideaCon">
+        <textarea placeholder="这一刻的想法..."></textarea>
+    </div>
+    <ul class="upLoadUl">
+        <li class="upLoadRel">
+            <img src="../image/actUpLoad.png"/>
+            <a href="javascript:;" class="file">
+                <input type="file" name="" >
+            </a>
+        </li>
+        <!-- 
+        <li><img src="../image/actUpLoad.png"/></li>
+        <li><img src="../image/actUpLoad.png"/></li> -->
+    </ul>
+    </div>
+    <p class="marginP"><span>我的灰色间隙，不是空</span></p>
+    <p class="bigMarginP"><span>我的灰色间隙，不是空</span></p>
+
+</div>
+<script type='text/javascript' src='../js/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/sm-extend.min.js' charset='utf-8'></script>
+<script type="text/javascript" src="../js/layer/layer.js"></script>
+<script type="text/javascript">
+    !function($){
+        var g={
+            init:function(){
+                var _t=this;
+                _t.upClick();
+
+            },
+            upClick:function(){
+                $(".a-upload").on("change","input[type='file']",function(){
+                    var filePath=$(this).val();
+                    if(filePath.indexOf("jpg")!=-1 || filePath.indexOf("png")!=-1){
+                        $(".fileerrorTip").html("").hide();
+                        var arr=filePath.split('\\');
+                        var fileName=arr[arr.length-1];
+                        $(".showFileName").html(fileName);
+                    }else{
+                        $(".showFileName").html("");
+                        $(".fileerrorTip").html("您未上传文件，或者您上传文件类型有误！").show();
+                        return false 
+                    }
+                })
+                // var t=this;
+                // var con='<ul class="faSeeUl"><li>查看全国</li><li>查看本市</li><li>查看我的发布</li></ul>';
+                // $(".seeFabu").click(function(){
+                //     var index = layer.open({
+                //         content: con,
+                //         success:function(){
+                //             $(".faSeeUl").parent().css({"padding":0});
+                //             $(".faSeeUl li").on('click',function(){
+                //                 layer.close(index);
+                //             });
+                //         }
+                //     });
+                // });
+            }
+        };
+        $(function(){
+            g.init();
+
+        });
+    }(Zepto);
+</script>
+</body>
+</html>

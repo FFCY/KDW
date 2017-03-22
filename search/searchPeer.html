@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>寻找同行</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../css/sm.min.css">
+    <link rel="stylesheet" href="../css/sm-extend.min.css">
+    <!--css初始化-->
+    <link rel="stylesheet" href="../css/base.css">
+
+</head>
+<body>
+    <!--主体内容-->
+    <div class="content">
+        <!--头部-->
+        <header class="top">
+            <form id="from_search" action="./searchPeerList.html" method = 'post'  onsubmit = "return AddCookInfo();">
+                <span id="topSearch" class="top-title" >
+                    <i class="top-title-left"></i>
+                         <input id="txtSeach" name="search" type="search"  placeholder="姓名/手机号/公司" class="txt-seach" style="width: 78%">
+                    <i class="top-title-right"></i>
+                </span>
+                <a href="#" class="top_left">
+                    <span class="icon icon-left"></span>
+                </a>
+                <a href="#" class="top_right">
+                    <span id="iconSearch" class="icon icon-search"  style="font-size: 17px;"></span>
+                </a>
+            </form>
+        </header>
+        <!--搜索历史列表-->
+        <content >
+            <div class="list-wrap">
+                <ul id="search_content"  class="list-content hide">
+                    <li>历史搜索</li>
+                    <li class="noMorelist">
+                        <div id="clear_cookie" class="noMorelist-text">清除历史数据</div>
+                    </li>
+                </ul>
+            </div>
+        </content>
+
+    </div>
+<script type='text/javascript' src='../js/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/sm-extend.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='../js/base.js' charset='utf-8'></script>
+    <script type='text/javascript' src='../js/store.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='../js/layer/layer.js' charset='utf-8'></script>
+    <script type='text/javascript' src='../js/iscroll4.2.5.js' charset='utf-8'></script>
+<script>
+    /*表单提交之前 ，先保存用户输入的信息*/
+    function AddCookInfo(){
+        var info= $("#txtSeach").val().trim();
+        if(!info){
+            return;
+        }
+        var storeInfo=store.get("searchPeer");
+        if(storeInfo){
+           var arrStore= (storeInfo+","+info).split(",");
+            store.set("searchPeer",unique(arrStore).join(","));
+        }
+        else{
+            store.set("searchPeer",info)
+        }
+    }
+
+    !function(){
+        var g={
+            init:function(){
+                var _t=this;
+                _t.xxx();
+                /*加载Cookie*/
+                _t.loadCookieInit();
+                /*表单搜索提交*/
+                _t.fromSearchSubmit();
+                /*清除Cookie*/
+                _t.clearCookieSearchInit();
+
+            }
+            ,
+            /*加载Cookie*/
+            loadCookieInit:function(){
+                var _t=this;
+                var storeInfo=store.get("searchPeer");
+                if(storeInfo){
+                    var arrStore= storeInfo.split(",");
+                    var htmlString =[];
+                    for(var i= 0,len=arrStore.length;i<len;i++){
+                        htmlString.push("<li class='seach-list'>"+arrStore[i]+"</li>");
+                    }
+                    $("#search_content").show();
+                    $("#clear_cookie").parent().before(htmlString.join(''));
+                    /*历史纪录添加链接*/
+                    _t.historylist();
+                }
+                else{
+                    $("#search_content").hide();
+                }
+            }
+            ,
+            /*表单搜索提交*/
+            fromSearchSubmit:function(){
+                $("#iconSearch").click(function(){
+                    AddCookInfo();
+                    document.getElementById("from_search").submit();
+                });
+            }
+            ,
+            /*清除Cookie*/
+            clearCookieSearchInit:function(){
+                var _t=this;
+                $("#clear_cookie").click(function(){
+                   layer.open({
+                        content: '你确定是否清除所有历史数据？',
+                        btn: ['确认', '取消'],
+                        shadeClose: false,
+                        yes: function(){
+                            store.get("searchPeer")&&(store.remove("searchPeer"),_t.loadCookieInit(), layer.closeAll());
+                        }, no: function(){
+                           layer.closeAll();
+                        }
+                    });
+
+                });
+            }
+            ,
+            /**/
+            historylist:function(){
+                $("#search_content").children(".seach-list").on("click",function(){
+                  //  window.location.href="www.baidu.com";
+                });
+            }
+            ,
+            /**/
+            xxx:function(){
+
+
+            }
+        };
+        $(function(){
+            g.init();
+        });
+    }();
+</script>
+
+</body>
+</html>

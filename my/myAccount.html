@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>我的</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../css/sm.min.css">
+    <link rel="stylesheet" href="../css/sm-extend.min.css">
+    <!--css初始化-->
+    <link rel="stylesheet" href="../css/base.css">
+</head>
+<body>
+<script>
+    /*全局配置*/
+    var  CONFIG={
+        /*是否显示：提示 完善信息*/
+        remindPerfect:"1"
+    };
+</script>
+<!--主体内容-->
+<div class="content">
+    <!--提示 完善信息-->
+    <div id="remindPerfect-warp" class="list-block hide">
+        <ul style="background-color: #faebcc;">
+            <li  class="item-content">
+                <div class="item-media"><i class="icon icon-f7"></i></div>
+                <div class="item-inner item-no-border" style="color: #c28302;">
+                    <div class="item-title"><i class="icon ic-notice"></i>&nbsp;您的个人名片资料尚未完善，建议立即完善</div>
+                    <div class="item-after">
+                        <span class="icon icon-right"  style="color: #c28302;"></span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="wapLoanConse" style="margin-bottom: 0px;">
+        <div class="conseOne mar0">
+            <div class="conOneCont">
+                <div class="me-info conseMess clear">
+                    <img src="../image/person.png" class="left conseImg">
+
+                    <div class="left">
+                        <p class="conseName">
+                            <span class="conseNames">赵爱价赵爱价赵爱价赵爱价赵爱价</span>
+                            <!--<span class="conseStar">LV4</span>-->
+                        </p>
+
+                        <p class="conmpany">135-4549-7769</p>
+                    </div>
+                    <div class="right" style=" font-size: 18px;margin-top: 10px;    margin-right: 3px;">
+                        <span class="icon icon-right"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="list-block wrap-orderinfo">
+        <ul>
+
+            <li class="item-content">
+                <div class="item-media"><i class="icon icon-f7"></i></div>
+                <div class="item-inner">
+                    <div class="item-title">我的单子</div>
+                    <div class="item-after">
+                        <span class="icon icon-right"></span>
+                    </div>
+                </div>
+            </li>
+            <li class="item-content">
+                <div class="item-media"><i class="icon icon-f7"></i></div>
+                <div class="item-inner">
+                    <div class="item-title">我的圈子</div>
+                    <div class="item-after">
+                        <span class="icon icon-right"></span>
+                    </div>
+                </div>
+            </li>
+            <li class="item-content">
+                <div class="item-media"><i class="icon icon-f7"></i></div>
+                <div class="item-inner">
+                    <div class="item-title">我的消息
+                        <span class="dot"></span>
+                    </div>
+                    <div class="item-after">
+
+                        <span class="icon icon-right"></span>
+                    </div>
+                </div>
+            </li>
+
+            <li class="item-content">
+                <div class="item-media"><i class="icon icon-f7"></i></div>
+                <div class="item-inner">
+                    <div class="item-title">我的聚会</div>
+                    <div class="item-after">
+                        <span class="icon icon-right"></span>
+                    </div>
+                </div>
+            </li>
+            <li class="item-content">
+                <div class="item-media"><i class="icon icon-f7"></i></div>
+                <div class="item-inner item-no-border">
+                    <div class="item-title">好友关系</div>
+                    <div class="item-after">
+                        <span class="icon icon-right"></span>
+                    </div>
+                </div>
+            </li>
+
+            <li class="cc"></li>
+            <li class="item-content">
+                <div class="item-media"><i class="icon icon-f7"></i></div>
+                <div class="item-inner item-no-border">
+                    <div class="item-title">我的设置</div>
+                    <div class="item-after">
+
+                        <span class="icon icon-right"></span>
+                    </div>
+                </div>
+            </li>
+
+
+        </ul>
+    </div>
+
+
+</div>
+
+<nav class="bar bar-tab wxFoot">
+    <a class="tab-item external " href="./index.html">
+        <span class="icon icon-home"></span>
+        <span class="tab-label">首页</span>
+    </a>
+    <a class="tab-item external  " href="">
+        <span class="icon icon-Qiang"></span>
+        <span class="tab-label">抢单</span>
+        <!-- <span class="badge">2</span> -->
+    </a>
+    <a class="tab-item external " href="">
+        <span class="icon icon-star"></span>
+        <span class="tab-label">圈子</span>
+    </a>
+    <a class="tab-item external " href="">
+        <span class="icon icon-cart"></span>
+        <span class="tab-label">聚会</span>
+    </a>
+    <a class="tab-item external active" href="../my/myAccount.html">
+        <span class="icon icon-settings"></span>
+        <span class="tab-label">我的</span>
+    </a>
+</nav>
+
+
+<script type='text/javascript' src='../js/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/sm-extend.min.js' charset='utf-8'></script>
+
+
+<script>
+    !function(){
+        isShowremindPerfect();
+        /*是否显示：提示 完善信息*/
+        function isShowremindPerfect(){
+            var rp_val= $("#hidremindPerfect").val();
+            if(CONFIG.remindPerfect=="1"){
+                $("#remindPerfect-warp").show();
+            }
+        }
+    }();
+
+</script>
+
+</body>
+</html>

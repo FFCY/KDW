@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../css/sm.min.css">
+    <link rel="stylesheet" href="../css/sm-extend.min.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/name-card.css">
+</head>
+<body>
+    <div class="content good-list-page">
+        <header class="top">
+            <a href="<#if flag?exists&&flag=='list'>${ctx}/apiCircle/circleList<#elseif flag?exists&&flag=='my'>${ctx}/apiAccount/myCircle</#if>" class="top_left">
+                <span class="icon icon-left"></span>
+            </a>
+            <span class="top-title">实名认证</span>
+        </header>
+        <form id="form" method="post">
+            <div class="activCon backWhite borBottom">
+                <div class="ideaCon">
+                    <textarea id="comment" name="comment" placeholder="" maxlength="400"></textarea>
+                    <input type="hidden" name="type" id="type" value=""/>
+                    <input type="hidden" name="subclassType" id="subclassType" value=""/>
+                </div>
+                <ul id="addPic" class="upLoadUl">
+                    <li class="upLoadRel">
+                        <img src="../image/actUpLoad.png"/>
+                    </li>
+                </ul>
+            </div>
+
+                <div class="list-block wrap-orderinfo">
+                    <ul>
+                <li class="webkBlo newOrderLI">
+                    <div class="item-title pdddLeftRem borBottom">借款金额（万）</div>
+                    <div class="webInp borBottom pdddRightRem">
+                        <input type="text" name="amount"  placeholder="点击输入真实姓名">
+                    </div>
+                </li>
+                        </ul>
+            </div>
+
+        </form>
+        <p class="marginP"><span>我的灰色间隙，不是空</span></p>
+        <p class="marLeftRight">
+            <a href="#" class="button button-fill button-danger btnok" >
+                提交
+            </a>
+        </p>
+        <p class="bigMarginP"><span>我的灰色间隙，不是空</span></p>
+
+
+    </div>
+
+</body>
+</html>

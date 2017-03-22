@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../css/sm.min.css">
+    <link rel="stylesheet" href="../css/sm-extend.min.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/name-card.css">
+</head>
+<body>
+<!--头部-->
+<div class="content good-list-page">
+    <header id="top" class="top">
+        <span class="top-title">活动详情</span>
+        <a href="javascript:void(0);" id="onExit" class="top_left">
+            <span class="icon icon-left"></span>
+        </a>
+    </header>
+    <p class="marginP"><span>我的灰色间隙，不是空</span></p>
+    <div class="activCon backWhite positionRea">
+        <ul class="actTopDat borBottom borTop">
+            <li class="acperImg">
+                <img src="../image/person.png"/>
+            </li>
+            <li class="acPer">
+                <ul class="actRigUl">
+                    <li class="actName">赵爱佳</li>
+                    <li class="actPlace">杭州市</li>
+                    <p class="actComName">上海信合添富金融信息金融信息</p>
+                </ul>
+            </li>
+        </ul>
+        <ul class="actUnder borBottom">
+            <li class="actTitle">
+                <span class="redBorSpan">交流会</span>
+                开单王举行大型同行交流会
+            </li>
+            <li>
+                <img src="../image/actClock.png" class="actLeftIcon"/>
+                4月3日  12:00-18:00
+            </li>
+            <li>
+                <img src="../image/actDizhi.png" class="actLeftIcon" />
+                上海浦东新区1088广场华子府上13A座0421B...
+            </li>
+            <h4 class="acvDetTiele">活动详情</h4>
+            <p class="acvDetCon">
+                同行交流会在下周五4.15号下午1:30到15:30，进行，届时礼品多多，除了人人有礼以外同行交流会在下周五4.15号下午1:30到15:30，进行，届时礼品多多，除了人人有礼以外同行交流会在下周五4.15号下午1:30到15:30，进行，届时礼品多多，除了人人有礼以外同行交流会在下周五4.15号下午1:30到15:30，进行，届时礼品多多，除了人人有礼以外，活动人数在200-400
+            </p>
+        </ul>
+        <img src="../image/actQuxiao.png" class="quBigIcon" />
+
+    </div>
+    <p class="marginP"><span>我的灰色间隙，不是空</span></p>
+    <div class="activCon backWhite borBottom borTop">
+        <ul class="personNum">
+        <h4 class="acvDetTiele">报名人数</h4>
+            <li>
+                <img src="../image/actBaoPer.png">
+            </li>
+            <li>
+                <img src="../image/actBaoPer.png">
+            </li>
+            <li>
+                <img src="../image/actBaoPer.png">
+            </li>
+            <li>
+                <img src="../image/actBaoPer.png">
+            </li>
+            <li>
+                <img src="../image/actBaoPer.png">
+            </li>
+        </ul>
+    </div>
+    <p class="bigMarginP"><span>我的灰色间隙，不是空</span></p>
+    <p class="marginP"><span>我的灰色间隙，不是空</span></p>
+
+</div>
+<!--底部-->
+        <nav class="bar footer lastUnder">
+            <a class="fleft" href="javascript:void(0);">
+
+                <span class="tab-label fshare share_go">
+                    <img src="../image/share.png">
+                    分享
+                </span>
+            </a>
+            <a class="fright bgColor2 baoMing" href="javascript:void(0)">
+                <span class="tab-label start fshare">
+                <!-- <img src="../image/actQuIcon.png"> -->
+                报名
+                </span>
+            </a>
+        </nav>
+<script type='text/javascript' src='../js/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/sm-extend.min.js' charset='utf-8'></script>
+<script type="text/javascript" src="../js/layer/layer.js"></script>
+<script type="text/javascript">
+    !function($){
+        var g={
+            init:function(){
+                var _t=this;
+                _t.baoMingClick();
+
+            },
+            baoMingClick:function(){
+                var t=this;
+                $(".baoMing").click(function(){
+                    layer.open({
+                        content: '该活动已结束，无需报名',
+                        style: 'background-color:#cccccc; color:#fff; border:none;',
+                        time: 2
+                    });
+                });
+            }
+        };
+        $(function(){
+            g.init();
+
+        });
+    }(Zepto);
+</script>
+</body>
+</html>

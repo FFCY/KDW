@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../css/sm.min.css">
+    <link rel="stylesheet" href="../css/sm-extend.min.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/name-card.css">
+</head>
+<body>
+    <!--头部-->
+    <div class="content good-list-page">
+        <header id="top" class="top">
+            <a href="javascript:void(0);" class="top_left seeFabu">
+                查看
+            </a>
+            <span class="top-title">活动详情</span>
+            <a href="#" class="top_right fabu">
+               <span>发布</span>
+            </a>
+        </header>
+        <p class="marginP"><span>我的灰色间隙，不是空</span></p>
+        <div class="activCon backWhite positionRea borBottom padBttom">
+            <ul class="actTopDat borBottom borTop">
+                <li class="acperImg">
+                    <img src="../image/person.png"/>
+                </li>
+                <li class="acPer">
+                    <ul class="actRigUl">
+                        <li class="actName">赵爱佳</li>
+                        <li class="actPlace">32分钟前</li>
+                        <p class="actComName">上海信合添富金融信息金融信息</p>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="actUnder">
+                <li class="actTitle">
+                    开单王举行大型同行交流会
+                </li>
+            </ul>
+            <ul class="fabuImgUl">
+                <li>
+                    <img src="../image/actFa.png"/>
+                </li>
+                <li class="imgCentLi">
+                    <img src="../image/actFa.png"/>
+                </li>
+                <li>
+                    <img src="../image/actFa.png"/>
+                </li>
+            </ul>
+            <p class="zanP">
+                <a href="javascript:void(0)" class="zanA">
+                <img src="../image/actZanGrey.png"/>
+                    3
+                </a>
+                <a href="javascript:void(0)" class="lunA">
+                <img src="../image/actreview.png"/>
+                    3
+                </a>
+            </p>
+            <p class="zanPerson">
+                <img src="../image/actZanBlue.png"/ class="zanPerIcon">
+                王大海，我爱我家，大大好人
+            </p>
+            <p class="lunConP">
+                <span class="zanName">我爱我:</span>
+                我是做平安的，加微信123328122我是做平安的，加微信123328122我是做平安的，加微信123328122
+            </p>
+        </div>
+         <p class="marginP"><span>我的灰色间隙，不是空</span></p>
+        <div class="activCon backWhite positionRea borBottom padBttom">
+            <ul class="actTopDat borBottom borTop">
+                <li class="acperImg">
+                    <img src="../image/person.png"/>
+                </li>
+                <li class="acPer">
+                    <ul class="actRigUl">
+                        <li class="actName">赵爱佳</li>
+                        <li class="actPlace">32分钟前</li>
+                        <p class="actComName">上海信合添富金融信息金融信息</p>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="actUnder">
+                <li class="actTitle">
+                    开单王举行大型同行交流会
+                </li>
+            </ul>
+            <ul class="fabuImgUl">
+                <li>
+                    <img src="../image/actFa.png"/>
+                </li>
+                <li class="imgCentLi">
+                    <img src="../image/actFa.png"/>
+                </li>
+                <li>
+                    <img src="../image/actFa.png"/>
+                </li>
+            </ul>
+            <p class="zanP">
+                <a href="javascript:void(0)" class="zanA">
+                <img src="../image/actZanGrey.png"/>
+                </a>
+                <a href="javascript:void(0)" class="lunA">
+                <img src="../image/actreview.png"/>
+                </a>
+                <a href="javascript:void(0)" class="deleatA">
+                删除
+                </a>
+            </p>
+        </div>
+
+        <p class="bigMarginP"><span>我的灰色间隙，不是空</span></p>
+    </div>
+<script type='text/javascript' src='../js/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/sm-extend.min.js' charset='utf-8'></script>
+<script type="text/javascript" src="../js/layer/layer.js"></script>
+<script type="text/javascript">
+    !function($){
+        var g={
+            init:function(){
+                var _t=this;
+                /*查看*/
+                _t.seeClick();
+                /*评论*/
+                _t.pinglunClick();
+                /*删除*/
+                _t.deleteSpan();
+                /*发布*/
+                _t.fabuClick();
+
+            },
+            /*-- 点击查看--*/
+            seeClick:function(){
+                var t=this;
+                var con='<ul class="faSeeUl"><li>查看全国</li><li>查看本市</li><li>查看我的发布</li></ul>';
+                $(".seeFabu").click(function(){
+                    var index = layer.open({
+                        content: con,
+                        success:function(){
+                             $(".faSeeUl").parent().css({"padding":0});
+                             $(".faSeeUl li").on('click',function(){
+                                layer.close(index);
+                             });
+                        }
+                    });
+                });
+            },
+            /*评论*/
+            pinglunClick:function(){
+                var t=this;
+                var con='<p class="lunBlock"><textarea placeholder="ddfffff"  class="lunText"></textarea><span class="sendText">发送</span></p>';
+                  $(".lunA").click(function(){
+                    var pageii = layer.open({
+                        type: 1,
+                        content: con,
+                        shade: 0,
+                        style: 'position:fixed; left:0; bottom:0; width:100%; height:20%; border:none;',
+                        success:function(){
+                            $(".sendText").click(function(){
+                                layer.close(pageii);
+                            });
+                        }
+                    });
+                });
+            },
+            /*-- 删除--*/
+            deleteSpan:function(){
+                var t=this;
+                var con='<ul class="faSeeUl deketeUl"><li>删除</li></ul>';
+                $(".deleatA").click(function(){
+                    var tParent=$(this).parent(".zanP").parent(".activCon");
+                    var index = layer.open({
+                        content: con,
+                        success:function(){
+                            $(".faSeeUl").parent().css({"padding":0});
+                            $(".deketeUl li").on('click',function(){
+                                layer.close(index);
+                                tParent.remove();
+                            });
+                        }
+                    });
+                });
+            },
+            fabuClick:function(){
+                var t=$(this);
+                var con='<div class="wanBlock"><p class="conP">请完善个人资料的常住地区</p><a href="#" class="redNorBtn">马上完善</a></div>';
+                $(".fabu").click(function(){
+                    var index = layer.open({
+                        content: con,
+                        success:function(){
+                            $(".redNorBtn").on('click',function(){
+                                layer.close(index);
+                            });
+                        }
+                    });
+                });
+            }
+
+        };
+        $(function(){
+            g.init();
+
+        });
+    }(Zepto);
+</script>
+</body>
+</html>

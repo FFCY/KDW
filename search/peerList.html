@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>寻找同行</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../css/sm.min.css">
+    <link rel="stylesheet" href="../css/sm-extend.min.css">
+    <!--css初始化-->
+    <link rel="stylesheet" href="../css/base.css">
+    <style>
+        .wapLoanConse .conseOne{
+            margin-top: 0;
+        }
+        .wapLoanConse{
+            margin-bottom: 0px;
+        }
+        .wapLoanConse .conOneCont .conseMess{
+            border: 0;
+        }
+        .conseOne{
+            border-bottom: 1px solid #dddddd;
+        }
+    </style>
+    <style>
+
+    </style>
+</head>
+<body>
+        <!--主体内容-->
+        <div class="content">
+            <div class="ceng"  ></div>
+            <!--头部-->
+            <header id="top" class="top">
+                <span id="topTitle" class="top-title">
+                    寻找同行
+                </span>
+
+                <a href="#" class="top_left">
+                    <span class="icon icon-left"></span>
+                </a>
+                <a href="./searchPeer.html" class="top_right">
+                    <span id="iconSearch" class="icon icon-search"  style="font-size: 17px;"></span>
+                </a>
+            </header>
+            <!--filter condition-->
+            <div class="filter-wrap">
+                <!--head-->
+                <ul id="list-nav" class="filter-header list-nav clearfix">
+                    <li id="" class="filter-header-li1" >
+                        <a href="javascript:void(0);">
+                            <span id="order_static_text" class="nav-txt">全部行业</span>
+                            <span class="icon icon-down"></span>
+                            <span class="nav-biao">|</span>
+                        </a>
+                    </li>
+                    <li class="filter-header-li2 " >
+                        <a href="javascript:void(0);">
+                            <span id="order_address_text" class="nav-txt">全国</span>
+                            <span class="icon icon-down"></span>
+                            <span class="nav-biao">|</span>
+                        </a>
+                    </li>
+                    <li class="filter-header-li3" >
+                        <a href="javascript:void(0);">
+                            <span id="order_business_text" class="nav-txt">全部业务</span>
+                            <span class="icon icon-down"></span>
+                        </a>
+                    </li>
+                </ul>
+                <!--body-->
+                <div class="filter-body">
+                    <div class="filter-body-d1" >
+                        <ul>
+                            <li data-value="">全部行业</li>
+                            <li data-value="">全部行业</li>
+                            <li data-value="">全部行业</li>
+                            <li data-value="">全部行业</li>
+                            <li data-value="">全部行业</li>
+                            <li data-value="">全部行业</li>
+                            <li data-value="">全部行业</li>
+                            <li data-value="">全部行业</li>
+                            <li data-value="">全部行业</li>
+                            <li data-value="">全部行业</li>
+                            <li data-value="">全部行业</li>
+                        </ul>
+                    </div>
+                    <div class="filter-body-d2 filter-address"></div>
+                    <div class="filter-body-d3">
+                        <ul>
+                            <li data-value="">全部业务</li>
+                            <li data-value="">全部业务</li>
+                            <li data-value="">全部业务</li>
+                            <li data-value="">全部业务</li>
+                            <li data-value="">全部业务</li>
+                            <li data-value="">全部业务</li>
+                            <li data-value="">全部业务</li>
+                            <li data-value="">全部业务</li>
+                            <li data-value="">全部业务</li>
+                            <li data-value="">全部业务</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="filter-body-content">
+                    <div class="filter-body-content-d2 filter-address">
+
+                    </div>
+                </div>
+            </div>
+            <!--内容-->
+            <div id="wrapper" >
+                <div id="scroller">
+                    <div class="ui-loading-wrap" id="pullDown">
+                        <p class="pullDownLabel"></p>
+                    </div>
+                    <ul id="thelist" class="wapLoanConse">
+
+                    </ul>
+                    <div class="ui-loading-wrap" id="pullUp">
+                        <p class="pullUpLabel"></p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+<script type='text/javascript' src='../js/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/sm-extend.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/base.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/store.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/layer/layer.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/iscroll4.2.5.js' charset='utf-8'></script>
+ <script type='text/javascript' src='../js/iscroll.js' charset='utf-8'></script>
+<script>
+    !function(){
+        var g={
+            init:function(){
+                var _t=this;
+            }
+        };
+        $(function(){
+            g.init();
+        });
+    }();
+</script>
+ <script>
+     var scrollObj_height= document.body.clientHeight-$("#top").height()-$("#list-nav").height();
+     var cityscroll;
+     $(function(){
+         var requestUrl="../json/provincesAndcitys.json";
+         // 顶部筛选
+         $.get(requestUrl, function (response) {
+             /*json转换格式*/
+             var ajaxJson=response;
+           var $filter01='<ul>';
+             var $filter01_content="";
+             $.each(ajaxJson,function(key,value){
+                 var len=value.citys.length;
+                 $filter01+='<li  data-value="'+value.id+'" data-citys="'+len+'">'+value.name+'</li>';
+
+                 if(len>0){
+                     $filter01_content='<div><ul data-parent="'+value.id+'">';
+                    var content=value.citys;
+                    for(var i= 0;i<len;i++){
+                        $filter01_content+='<li data-value="'+content[i].id+'">'+content[i].name+'</li>';
+                    }
+                     $filter01_content+="</ul></div>";
+                     $('.filter-body-content-d2').append($filter01_content);
+                 }
+             });
+
+             $('.filter-body-d2').html($filter01);
+
+              function hideCity(){
+                  //隐藏城市
+                  $('.filter-body-content-d2').hide();
+                  $('.filter-body-content-d2').children(".on").attr({"style":""});
+                  $('.filter-body-content-d2').children(".on").children("ul").attr({"style":""});
+                  $('.filter-body-content-d2').children(".on").removeClass("on");
+                  (cityscroll)&&cityscroll.destroy();
+              }
+             //筛选器部分
+             $('.filter-header li').on('click',function(){
+                 var $number=$(this).index()+1;
+                 $('.ceng').show();
+                 $('.filter-body-d'+$number).show().siblings('div').hide();
+                 hideCity();
+                 $(this).addClass('on').siblings('li').removeClass('on');
+
+                 $(this).siblings('li').attr('data-val','');
+                 var data_val=$(this).attr('data-val');
+                 if(data_val!='1'){
+                     $(this).attr('data-val','1').addClass('on');
+                     $('.filter-body-d'+$number).show();
+                     $('.ceng').show();
+                 }else{
+                     $(this).attr('data-val','').removeClass('on');
+                     $('.ceng').hide();
+                     $('.filter-body-d'+$number).hide();
+                 }
+                 //判断下拉类表高度是否大于定值230px
+                 if($('.filter-body-d'+$number).children('ul').height()>230){
+
+                     //如果是地址
+                     if($('.filter-body-d'+$number).hasClass("filter-address")){
+                         $('.filter-body-d'+$number).css({"height":scrollObj_height});
+                     }else{
+                         $('.filter-body-d'+$number).css({"height":"254px"});
+                     }
+                 }else{
+                     $('.filter-body-d'+$number).css({"height":"auto"});
+                 }
+                 var scroll = new IScroll('.filter-body-d'+$number, {
+                     scrollY: !0,
+                     scrollX:!1
+                 });
+             });
+             //点击弹层消失
+             $('.ceng').click(function(){
+                 $('.filter-header li').attr('data-val','').removeClass('on');
+                 $('.ceng').hide();
+                 $('.filter-body div').hide();
+             });
+             //筛选条件脚本--下拉选中一项处理动作
+             $('.filter-body-d1 ul li').on('click',function(){
+                 $dylx=$(this).text();
+                 $hkfs=$('.filter-header-li2 span').text();
+                 $city=$('.filter-header-li3 span').text();
+
+                 $get_cond1=$(this).attr('value');
+                 $get_cond2=$('.filter-header-li2 span').attr('value');
+                 $get_cond3=$('.filter-header-li3 span').attr('value');
+                 $get_cond4=$('.peer-search-in .ps-input').val();
+
+                 get_condition($dylx,$hkfs,$city,$get_cond1,$get_cond2,$get_cond3,$get_cond4);
+             });
+             $('.filter-body-d2 ul li').on('click',function(){
+                var _caller=$(this);
+                 //如果有子城市
+                if(_caller.attr("data-citys")>0){
+                    $(".filter-body-content-d2").children().children("ul").each(function(){
+                        var _caller_1=$(this);
+                        if(_caller_1.attr("data-parent")==_caller.attr("data-value")){
+                            _caller_1.show();
+                            _caller_1.parent().addClass("on").parent().show();
+                            _caller_1.parent().css({"height":scrollObj_height});
+                             cityscroll = new IScroll($(".filter-body-content-d2").children(".on")[0], {
+                                scrollY: !0,
+                                scrollX:!1
+                            });
+                        }
+                    });
+                }else{
+                 $dylx=encodeURI(encodeURI($('.filter-header-li1 span').text()));
+                 $hkfs=encodeURI(encodeURI($(this).text()));
+                 $city=encodeURI(encodeURI($('.filter-header-li3 span').text()));
+
+                 $get_cond1=$('.filter-header-li1 span').attr('value');
+                 $get_cond2=$(this).attr('value');
+                 $get_cond3=$('.filter-header-li3 span').attr('valuAe');
+                 $get_cond4=$('.peer-search-in .ps-input').val();
+
+                 get_condition($dylx,$hkfs,$city,$get_cond1,$get_cond2,$get_cond3,$get_cond4);
+                }
+             });
+             $('.filter-body-d3 ul li').on('click',function(){
+                 $dylx=encodeURI(encodeURI($('.filter-header-li1 span').text()));
+                 $hkfs=encodeURI(encodeURI($('.filter-header-li2 span').text()));
+                 $city=encodeURI(encodeURI($(this).text()));
+
+                 $get_cond1=$('.filter-header-li1 span').attr('value');
+                 $get_cond2=$('.filter-header-li2 span').attr('value');
+                 $get_cond3=$(this).attr('value');
+                 $get_cond4=$('.peer-search-in .ps-input').val();
+
+                 get_condition($dylx,$hkfs,$city,$get_cond1,$get_cond2,$get_cond3,$get_cond4);
+             });
+             $('.peer-search-in .ps-btn').on('click',function(){
+                 $dylx=encodeURI(encodeURI($('.filter-header-li1 span').text()));
+                 $hkfs=encodeURI(encodeURI($('.filter-header-li2 span').text()));
+                 $city=encodeURI(encodeURI($('.filter-header-li3 span').text()));
+
+                 $get_cond1=$('.filter-header-li1 span').attr('value');
+                 $get_cond2=$('.filter-header-li2 span').attr('value');
+                 $get_cond3=$('.filter-header-li3 span').attr('value');
+                 $get_cond4=$('.peer-search-in .ps-input').val();
+
+                 get_condition($dylx,$hkfs,$city,$get_cond1,$get_cond2,$get_cond3,$get_cond4);
+             });
+             //调取输入法的 搜索按钮type属性=search 增加form即可
+             $('.ps-form').submit(function(){
+                 $('.peer-search-in .ps-btn').trigger('click');
+                 return false;
+             });
+             $('.ps-input').keyup(function(){
+                 if($(this).val()!=''){
+                     $(this).next('.ui-icon-close').css({"display":"block"});
+                 }else{
+                     $(this).next('.ui-icon-close').css({"display":"none"});
+                 }
+             });
+
+
+             //初始状态 筛选器默认显示名称
+//             if(getQueryString('dylx')==null){
+//                 $('.uui-filter-header-li1 span').text(response.data.filters[0].name).attr('value','');
+//             }else{
+//                 var $showStr=cut_strData(decodeURI(decodeURI(getQueryString('dylx'))),3);
+//                 $('.uui-filter-header-li1 span').text($showStr).attr('value',decodeURI(decodeURI(getQueryString('cond1'))));
+//             }
+//             if(getQueryString('hkfs')==null){
+//                 $('.uui-filter-header-li2 span').text(response.data.filters[1].name).attr('value','');
+//             }else{
+//                 var $showStr=cut_strData(decodeURI(decodeURI(getQueryString('hkfs'))),3);
+//                 $('.uui-filter-header-li2 span').text($showStr).attr('value',getQueryString('cond2'));
+//             }
+//             if(getQueryString('city')==null){
+//                 $('.uui-filter-header-li3 span').text("排序").attr('value','none');
+//             }else{
+//                 var $showStr=cut_strData(decodeURI(decodeURI(getQueryString('city'))),3);
+//                 $('.uui-filter-header-li3 span').text($showStr).attr('value',getQueryString('cond3'));
+//             }
+//             if(getQueryString('cond4')==null||getQueryString('cond4')==''){
+//
+//             }else{
+//                 $('.peer-search-in .ps-input').val(decodeURI(decodeURI(getQueryString('cond4'))));
+//                 $('.peer-search').show();
+//             }
+//             //初始状态 筛选器默认居中
+//             for(i=1;i<4;i++){
+//                 $('.uui-filter-header-li'+i+' div').css({"width":$('.uui-filter-header-li'+i+' span').width()+$('.uui-filter-header-li'+i +
+//                         ' em').width()+11+"px"});
+//             }
+             //跳转函数
+             function get_condition(a,b,c,d,e,f,g){
+
+                 window.location='/peer/list?dylx='+a+'&hkfs='+b+'&city='+c+'&cond1='+d+'&cond2='+e+'&cond3='+f+'&cond4='+g;
+             }
+
+         });
+     });
+
+
+     var myScroll,pullDownEl, pullDownOffset, pullUpEl, pullUpOffset;
+     /*获取参数*/
+     getQueryString('cond1')?$cond1=getQueryString('cond1'):$cond1='';
+     getQueryString('cond2')?$cond2=getQueryString('cond2'):$cond2='';
+     getQueryString('cond3')?$cond3=getQueryString('cond3'):$cond3='';
+     var args={
+         cond1:$cond1,
+         cond2:$cond2,
+         cond3:$cond3,
+     };
+
+
+     document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+
+     document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 20); }, false);
+     //上拉刷新
+     function pullDownAction () {
+         AjaxLoad();
+     }
+     //下拉加载
+     function pullUpAction () {
+         setTimeout(function () {
+             //显示预加载，防止用户操作
+             $.showIndicator();
+             var requestUrl="../json/searchPeerList.json";
+             var $list='';
+             $.get(requestUrl,args, function(response){
+                 //隐藏预加载
+                 $.hideIndicator();
+                 /*json转换格式*/
+                 var ajaxJson=response;
+                 if(ajaxJson.length){
+                     $list+=resDataToHtml(ajaxJson);
+
+                     $('#thelist').append($list);
+
+                     myScroll.refresh();
+                 }else{
+                     pullUpEl.querySelector('.pullUpLabel').innerHTML = '已经没有了';
+                 }
+             });
+
+         }, 400);
+     }
+     //初始状态
+     function loaded() {
+
+         AjaxLoad();
+         pullDownEl = document.getElementById('pullDown');
+         pullDownOffset = pullDownEl.offsetHeight;
+         pullUpEl = document.getElementById('pullUp');
+         pullUpOffset = pullUpEl.offsetHeight;
+         var scrollObj=$("#wrapper");
+
+         scrollObj.css({"height":scrollObj_height,"width":"100%"});
+         myScroll = new iScroll('wrapper', {
+             useTransition: true,
+             topOffset: pullDownOffset,
+             onRefresh: function () {
+                 if (pullDownEl.className.match('loading')) {
+                     pullDownEl.className = '';
+                     pullDownEl.querySelector('.pullDownLabel').innerHTML = '下拉刷新';
+                 } else if (pullUpEl.className.match('loading')) {
+                     pullUpEl.className = '';
+                     pullUpEl.querySelector('.pullUpLabel').innerHTML = '上拉加载';
+                 }
+             },
+             onScrollMove: function () {
+                 if (this.y > 5 && !pullDownEl.className.match('flip')) {
+                     pullDownEl.className = 'flip';
+                     pullDownEl.querySelector('.pullDownLabel').innerHTML = '释放刷新';
+                     this.minScrollY = 0;
+                 } else if (this.y < 5 && pullDownEl.className.match('flip')) {
+                     pullDownEl.className = '';
+                     pullDownEl.querySelector('.pullDownLabel').innerHTML = '释放刷新';
+                     this.minScrollY = -pullDownOffset;
+                 } else if (this.y < (this.maxScrollY - 5) && !pullUpEl.className.match('flip')) {
+                     pullUpEl.className = 'flip';
+                     pullUpEl.querySelector('.pullUpLabel').innerHTML = '释放刷新';
+                     this.maxScrollY = this.maxScrollY;
+                 } else if (this.y > (this.maxScrollY + 5) && pullUpEl.className.match('flip')) {
+                     pullUpEl.className = '';
+                     pullUpEl.querySelector('.pullUpLabel').innerHTML = '释放刷新';
+                     this.maxScrollY = pullUpOffset;
+                 }
+             },
+             onScrollEnd: function () {
+                 if (pullDownEl.className.match('flip')) {
+                     pullDownEl.className = 'loading';
+                     pullDownEl.querySelector('.pullDownLabel').innerHTML = '加载中...';
+                     pullDownAction();	// Execute custom function (ajax call?)
+                 } else if (pullUpEl.className.match('flip')) {
+                     pullUpEl.className = 'loading';
+                     pullUpEl.querySelector('.pullUpLabel').innerHTML = '加载中...';
+                     pullUpAction();	// Execute custom function (ajax call?)
+                 }
+             }
+         });
+
+     }
+     function AjaxLoad(){
+         //显示预加载，防止用户操作
+         $.showIndicator();
+         var $list="";
+         /*请求地址*/
+         var requestUrl="../json/searchPeerList.json";
+         $.get(requestUrl,args, function(response){
+             //隐藏预加载
+             $.hideIndicator();
+             /*json转换格式*/
+             var ajaxJson=response;
+             if(ajaxJson.length){
+                 $list+=resDataToHtml(ajaxJson);
+                 $('#thelist').empty().append($list);
+                 if(!response.length){
+                     pullUpEl.querySelector('.pullUpLabel').innerHTML = '已经没有了';
+                 }
+             }else{
+                 $list += '<li class="uu-list-nothings"><p class="uu-list-nothings-p">暂无记录</p></li>';
+                 $('#thelist').empty().append($list);
+             }
+             myScroll.refresh();
+         });
+     }
+     //返回数据拼接为HTML
+     function resDataToHtml(responseDataItems,innerCeng){
+         var $list=[];
+         $.each(responseDataItems, function(key, value){
+             //没有人物图片 ，就加载默认的人物图片
+             (!value.portraitUr)&&(value.portraitUr="../image/anonymous.jpg");
+             $list.push('<a href="peerList.html"> <div class="conseOne"> \
+                            <div class="conOneCont">\
+                                <div class="conseMess clear">\
+                                    <img src="'+value.portraitUr+'" class="left conseImg" />\
+                                    <div class="left">\
+                                        <p class="conseName"> <span class="conseNames">'+value.realName+'</span>\
+                                        </p>\
+                                        <p class="conmpany">'+value.companyName+'</p>\
+                                    </div>\
+                                    <div class="right">\
+                                        <p class="answertime hidden"> '+value.cityName+' </p>\
+                                    </div>\
+                                </div>\
+                            </div>\
+                         </div></a>');
+         });
+         return $list.join("");
+     }
+
+
+ </script>
+</body>
+</html>

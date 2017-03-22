@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../css/sm.min.css">
+    <link rel="stylesheet" href="../css/sm-extend.min.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/name-card.css">
+</head>
+<body>
+    <!--头部-->
+    <div class="content good-list-page">
+        <header id="top" class="top">
+            <span class="top-title">发起活动</span>
+            <a href="javascript:void(0);" class="top_left">
+                <span class="icon icon-left"></span>
+            </a>
+            <a href="activityList.html" class="top_right">
+              <input class="btn-ok" type="button" value="保存">
+          </a>
+      </header>
+      <section>
+        <ul class="typeCheck borBottom backWhite">
+            <li>聚餐</li>
+            <li class="middleLi">交流会</li>
+            <li>其它</li>
+        </ul>
+    </section>
+    <p class="marginP"><span>我的灰色间隙，不是空</span></p>
+    <div class="list-block noMargin">
+      <!-- noLiPad start -->
+      <ul class="noLiPad">
+
+         <li class="item-content">
+            <div class="item-inner">
+              <div class="item-title">标题</div>
+              <div class="item-input">
+                  <input type="hidden">
+                  <input type="text" placeholder="请输入活动标题">
+              </div>
+          </div>
+      </li>
+
+      <li class="item-content item-link">
+        <div class="item-inner">
+          <div class="item-title">活动时间</div>
+          <div class="item-input">
+              <span class="open-slider-modal" >请选择</span>
+          </div>
+      </div>
+  </li>
+  <li class="item-content item-link">
+    <div class="item-inner">
+      <div class="item-title">所在城市</div>
+      <div class="item-input">
+          <span class="homeTown" id="homeNtt" data-province="" data-city="">请选择</span>
+          <input type="hidden" id="homeCity" name="homeCity" value="2128">
+          <input type="hidden" id="homeProvince" name="homeProvince" value="2034">       
+      </div>
+  </div>
+</li>
+<li class="item-content">
+            <div class="item-inner">
+              <div class="item-title">具体地点</div>
+              <div class="item-input">
+                  <input type="hidden" name="id" value="2">
+                  <input type="text" id="realName" name="realName" placeholder="请输入地址">
+              </div>
+          </div>
+      </li>
+<p class="marginP"><span>我的灰色间隙，不是空</span></p>
+
+<li class="item-content">
+ <div class="inpOut webkBlo">
+   <span class="labWid webLab">个人签名</span>
+   <div class="webInp webPad areaBlo">
+     <textarea placeholder="说点什么吧" maxlength="200"></textarea>
+ </div>
+</div>
+</li>
+
+<p class="marginP"><span>我的灰色间隙，不是空</span></p>
+
+</ul>
+<!-- noLiPad end -->
+</div>
+<p class="marginP"><span>我的灰色间隙，不是空</span></p>
+</div>
+<script type='text/javascript' src='../js/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/sm-extend.min.js' charset='utf-8'></script>
+<script type="text/javascript" src="../js/layer/layer.js"></script>
+<script type="text/javascript">
+    !function($){
+        var g={
+            init:function(){
+                var _t=this;
+                _t.faqiClick();
+
+            },
+            faqiClick:function(){
+                var t=this;
+                $(".typeCheck li").each(function(index, element) {
+                    $(this).on('click',function(){
+                     $(".actType").removeClass("actType");
+                     $(this).addClass("actType");
+                 });
+
+                });
+            }
+       };
+       $(function(){
+        g.init();
+
+    });
+   }(Zepto);
+</script>
+</body>
+</html>

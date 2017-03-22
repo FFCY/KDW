@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../css/sm.min.css">
+    <link rel="stylesheet" href="../css/sm-extend.min.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/name-card.css">
+</head>
+<body>
+<!--下载app-->
+<div class="content good-list-page" style="position: static;">
+<header id="header" class="hasOpeBlack">
+    <section id="appwrap" class="app-download-wrapper opcitBlack">
+        <div class="app-download-ico">
+            <span><img src="../image/appicon.png"></span>
+        </div>
+        <div class="app-download-desc">
+            <p>开单王APP客户端</p>
+            <p style="color: #fff;">掘金信贷人脉圈</p>
+        </div>
+        <div class="app-download-ok">
+            <input type="button" onclick="downLoadApp();" value="立即下载" />
+            <a id="removeApp"style="width: 25px; height: 45px; display: inline-block;">
+                <span>
+                    <img src="../image/close.png" style="width: 14px">
+                </span>
+            </a>
+        </div>
+    </section>
+
+    <div id="wrapper" >
+
+            <ul class="">
+
+                <#if jm.isMyCircle==1>
+                    <p class="marginP"><span>我的灰色间隙，不是空</span></p>
+                    <div id="div${jm.circleId}" data-circleId="${jm.circleId}" class="pinglunList activCon backWhite positionRea borBottom padBttom">
+                        <ul onclick="window.location.href='${ctx}/apiAccount/personalCard?id=${jm.userId}&flag=circle&ran='+Math.random()+''" class="actTopDat borBottom borTop">
+                            <li class="acperImg">
+                                <img  class='lazy' src="../image/user-pic.png" data-src="${jm.portraitUrl}" />
+
+                            </li>
+                            <li class="acPer">
+                                <ul class="actRigUl">
+                                    <li class="actName lenSix"><#if jm.realName?length gt 6>${jm.realName?substring(0,5)}...<#else>${jm.realName}</#if><#if jm.verifyStatus?exists&&jm.verifyStatus==1><span class="zanZhu topIcon">认证用户</span></#if><#if jm.isTop?exists&&jm.isTop==1><span class="isTop topIcon">置顶</span></#if></li>
+                                    <li class="actPlace per20">${dateFormateFun(jm.createTime) }</li>
+                                    <p class="actComName">${jm.companyName}</p>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="actUnder">
+                            <p class="actTitle">
+                                ${jm.comment}
+                            </p>
+                        </ul>
+                        <ul class="fabuImgUl">
+                            <#if jm.picUrl?split(",")?size gt 0>
+                                <#list jm.picUrl?split(",") as pic>
+                                    <#if pic?length gt 0>
+                                        <li  class="pb-popup">
+                                            <img class='lazy' src="../image/user-pic.png" data-src="${pic}"/>
+                                        </li>
+                                    </#if>
+                                </#list>
+                            </#if>
+                        </ul>
+                        <p class="zanP">
+                            <a href="javascript:void(0)" class="zanA">
+                                <img onclick="good(this,<#if jm.liked?exists&&jm.liked==1>1<#else>0</#if>,${jm.circleId});" src="<#if jm.liked?exists&&jm.liked==1>../image/actZanRed.png<#else>../image/actZanGrey.png</#if>"/>
+              <span>${jm.likeCount}<span>
+                            </a>
+                            <a href="javascript:void(0)" class="lunA" onclick="comment(${jm.circleId},'co${jm.circleId}');">
+                                <img src="../image/actreview.png"/>
+                                <span id="co${jm.circleId}">${jm.commentCount}</span>
+                            </a>
+                            <a onclick="deleteCir(${jm.circleId})" href="javascript:void(0)" class="deleatA">
+                                删除
+                            </a>
+                        </p>
+                        <#if jm.likeNames?size gt 0>
+                            <p class="zanPerson">
+                                <img src="../image/actZanBlue.png"/ class="zanPerIcon">
+                                <#list jm.likeNames as ln>
+                                    <span class='zanPerson-list' data-id='${ln.likeUserId}' onclick="window.location.href='${ctx}/apiAccount/personalCard?id=${ln.likeUserId}&flag=circle&ran='+Math.random()+''">${ln.likeUserName}&nbsp</span>
+                                </#list>
+                            </p>
+                        </#if>
+                        <#if jm.commentList?size gt 0>
+
+                            <#list jm.commentList as cl>
+                                <p class="lunConP" id="lun${cl.commentId}">
+                                    <span onclick="window.location.href='${ctx}/apiAccount/personalCard?id=${cl.cUserId}&flag=circle&ran='+Math.random()+''" class="zanName">${cl.cRealName}:</span>
+                                    ${cl.comment}
+                                    <#if cl.isMyComment==1>
+                                        <a onclick="deleteComment(${cl.commentId})" href="javascript:void(0)" class="deleatA">
+                                            删除
+                                        </a>
+                                    </#if>
+                                </p>
+                            </#list>
+
+                        </#if>
+
+                    </div>
+                    <#else>
+                        <p class="marginP"><span>我的灰色间隙，不是空</span></p>
+                        <div id="div${jm.circleId}" data-circleId="${jm.circleId}" class="pinglunList activCon backWhite positionRea borBottom padBttom">
+                            <ul onclick="window.location.href='${ctx}/apiAccount/personalCard?id=${jm.userId}&flag=circle&ran='+Math.random()+''" class="actTopDat borBottom borTop">
+                                <li class="acperImg">
+                                    <img  class='lazy' src="../image/user-pic.png" data-src="${jm.portraitUrl}" />
+                                </li>
+                                <li class="acPer">
+                                    <ul class="actRigUl">
+                                        <li class="actName lenSix"><#if jm.realName?length gt 6>${jm.realName?substring(0,5)}...<#else>${jm.realName}</#if><#if jm.verifyStatus?exists&&jm.verifyStatus==1><span class="zanZhu topIcon">认证用户</span></#if><#if jm.isTop?exists&&jm.isTop==1><span class="isTop topIcon">置顶</span></#if></li>
+                                        <li class="actPlace per20">${dateFormateFun(jm.createTime) }</li>
+                                        <p class="actComName">${jm.companyName}</p>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="actUnder">
+                                <p class="actTitle">
+                                    ${jm.comment}
+                                </p>
+                            </ul>
+                            <ul class="fabuImgUl">
+                                <#if jm.picUrl?split(",")?size gt 0>
+                                    <#list jm.picUrl?split(",") as pic>
+                                        <#if pic?length gt 0>
+                                            <li class="pb-popup">
+                                                <img class='lazy' src="../image/user-pic.png" data-src="${pic}"/>
+
+                                            </li>
+                                        </#if>
+                                    </#list>
+                                </#if>
+                            </ul>
+                            <p class="zanP">
+                                <a href="javascript:void(0)" class="zanA zanA${jm.liked}">
+                                    <img onclick="good(this,<#if jm.liked?exists&&jm.liked==1>1<#else>0</#if>,${jm.circleId});" src="<#if jm.liked?exists&&jm.liked==1>../image/actZanRed.png<#else>../image/actZanGrey.png</#if>"/>
+                 <span>${jm.likeCount}<span>
+                                </a>
+                                <a href="javascript:void(0)" class="lunA" onclick="comment(${jm.circleId});">
+                                    <img src="../image/actreview.png"/>
+                                    ${jm.commentCount}
+                                </a>
+                            </p>
+                                <p class="zanPerson">
+                                    <img src="../image/actZanBlue.png"/ class="zanPerIcon">
+                                        <span class='zanPerson-list'  data-id='${ln.likeUserId}'  onclick="window.location.href='${ctx}/apiAccount/personalCard?id=${ln.likeUserId}&flag=circle&ran='+Math.random()+''">${ln.likeUserName}&nbsp</span>
+
+                                </p>
+                                    <p class="lunConP">
+                                        <span onclick="window.location.href='${ctx}/apiAccount/personalCard?id=${cl.cUserId}&flag=circle&ran='+Math.random()+''" class="zanName">${cl.cRealName}:</span>
+
+                                            <a onclick="deleteComment(${cl.commentId})" href="javascript:void(0)" class="deleatA">
+                                                删除
+                                            </a>
+                                    </p>
+
+                        </div>
+                </li>
+            </ul>
+
+    </div>
+
+</header>
+</div>
+<script type='text/javascript' src='../js/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='../js/sm-extend.min.js' charset='utf-8'></script>
+<script type="text/javascript" src="../js/layer/layer.js"></script>
+<script type="text/javascript">
+    !function() {
+        var g = {
+            init : function() {
+                var _t = this;
+                _t.removeDownAppInit();
+            },
+            /*移除下载app*/
+            removeDownAppInit : function() {
+                $("#removeApp").click(function() {
+                    $("#appwrap").remove();
+                    $("#content_wrap").removeClass("marTop1")
+                });
+            },
+
+        };
+        $(function() {
+            g.init();
+        });
+    }();
+    function downLoadApp() {
+        window.location.href = "../download.html";
+    }
+</script>
+</body>
+</html>
